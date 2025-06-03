@@ -7,8 +7,9 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 
-	"chicuco/api/pkg/centers"
+	"chicuco/api/pkg/center"
 	"chicuco/api/pkg/contacto"
+	"chicuco/api/pkg/hito"
 )
 
 // Api represents the API with its address and endpoints
@@ -36,10 +37,11 @@ func (a *Api) Mount() http.Handler {
 	r.Use(middleware.Logger)
 
 	// Rutas GET
-	r.Get("v1/contactos", contacto.HandlerContactos) // Funcion para obtener el contacto
-	r.Get("v1/centros", centers.HandlerCentros)      // Funcion para obtener los centros
+	r.Get("/v1/contactos", contacto.HandlerContactos)    // Funcion para obtener el contacto
+	r.Get("/v1/centros_de_salud", center.HandlerCentros) // Funcion para obtener los centros
 
-	// Rutas POST DELETE PUT en un futuro
+	// Rutas POST
+	r.Post("/v1/hitos", hito.HandlerHitos) // Funcion para obtener el hito según la edad del infante
 
 	// Retornar el router
 	return r

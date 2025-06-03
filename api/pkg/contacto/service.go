@@ -2,7 +2,7 @@ package contacto
 
 import (
 	"encoding/json"
-	"log"
+	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -18,16 +18,16 @@ type Contacto struct {
 // Leer el archivo json
 func cargarContactos() ([]Contacto, error) {
 	// Obtiene la ruta del archivo
-	ruta, err := filepath.Abs("../data/contacto.json")
+	ruta, err := filepath.Abs("data/contacto.json")
 	if err != nil {
-		log.Fatalln("Error al obtener la ruta del archivo:", err)
+		fmt.Println("Error al obtener la ruta del archivo:", err)
 		return nil, err
 	}
 
 	// Lee el contenido
 	contenido, err := os.ReadFile(ruta)
 	if err != nil {
-		log.Fatalln("Error al leer el archivo:", err)
+		fmt.Println("Error al leer el archivo:", err)
 		return nil, err
 	}
 
@@ -35,7 +35,7 @@ func cargarContactos() ([]Contacto, error) {
 	var contactos []Contacto
 	err = json.Unmarshal(contenido, &contactos)
 	if err != nil {
-		log.Fatalln("Error al deserializar el archivo:", err)
+		fmt.Println("Error al deserializar el archivo:", err)
 		return nil, err
 	}
 
@@ -46,7 +46,7 @@ func cargarContactos() ([]Contacto, error) {
 func HandlerContactos(w http.ResponseWriter, r *http.Request) {
 	contactos, err := cargarContactos()
 	if err != nil {
-		log.Fatalln("Error al cargar los contactos:", err)
+		fmt.Println("Error al cargar los contactos:", err)
 		http.Error(w, "Error al cargar los contactos", http.StatusInternalServerError)
 		return
 	}
@@ -58,7 +58,7 @@ func HandlerContactos(w http.ResponseWriter, r *http.Request) {
 	// Codifica el slice con contactos a JSON
 	err = json.NewEncoder(w).Encode(contactos)
 	if err != nil {
-		log.Fatalln("Error al codificar los contactos:", err)
+		fmt.Println("Error al codificar los contactos:", err)
 		http.Error(w, "Error al codificar los contactos", http.StatusInternalServerError)
 		return
 	}
