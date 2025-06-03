@@ -1,0 +1,222 @@
+[
+    {
+        "nombre": "CECOSF Juan Pablo II - Dependiente de CESFAM Rodelillo",
+        "direccion": "Av. Juan Pablo II 540 Valparaíso",
+        "horario": "Lunes a Viernes de 8:00 a 17:00 horas.",
+        "telefono": {
+            "numero": "+56 9 6452 9540",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "Posta Laguna Verde",
+        "direccion": "Galvarino 150, Valparaíso",
+        "horario": "Lunes a Viernes de 8:00 a 17:00 horas. Sábados, Domingos y Festivos: 24 hrs de Atención",
+        "telefono": {
+            "numero": "32 213 5068",
+            "horario": "",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Barón",
+        "direccion": "Blanco Viel 661, Valparaíso",
+        "horario": "Lunes a Viernes de 8:00 a 20:00 horas. Sábado 9:00 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6005",
+            "horario": "Lunes a Viernes de 8:00 a 12:30 y 14:00 a 16:30 horas.Sábado 9:00 a 12:30 horas.",
+            "poblacion_preferente": "800 500 507"
+        }
+    },
+    {
+        "nombre": "CESFAM Esperanza",
+        "direccion": "Galvarino 7, Valparaíso",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "800 500 509",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Cordillera",
+        "direccion": "Chaparro 197, Valparaíso",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "800 500 508; 32 213 6089",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Quebrada Verde",
+        "direccion": "Playa Ancha, Valparaíso",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6207",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "SAPU Quebrada Verde",
+        "direccion": "Playa Ancha, Valparaíso",
+        "horario": "Lunes a Viernes de 17:00 a 8:00 horas del día siguiente. Sábado, Domingo y Festivos las 24 horas.",
+        "telefono": {
+            "numero": "32 213 6203",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Marcelo Mena",
+        "direccion": "Av. Alemania 5360, Valparaíso",
+        "horario": "Lunes a Viernes de 8:00 a 20:00 horas. Sábado 9:00 a 13:00 horas.",
+        "telefono": {
+            "numero": "800 500 512",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "SAPU Marcelo Mena",
+        "direccion": "Av. Alemania 5360, Valparaíso",
+        "horario": "Lunes a Viernes de 17:00 a 24:00 horas. Sábado, Domingos y Festivos 8:00 a 24:00 horas.",
+        "telefono": {
+            "numero": "32 225 0228",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Padre Damián",
+        "direccion": "Cabritería Nte. 2055, Valparaíso",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6451",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Puertas Negras",
+        "direccion": "Vargas Stoller N1294, Población Juan Montedónico, Playa Ancha.",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6271",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Reina Isabel II",
+        "direccion": "George Washington 1926, C O'higgins",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6715",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "SAPU Reina Isabel II",
+        "direccion": "George Washington 1926, C O'higgins",
+        "horario": "Lunes a Viernes de 17:00 a 24:00 horas. Sábado, Domingos y Festivos 8:00 a 00:00 horas.",
+        "telefono": {
+            "numero": "32 213 6715",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Rodelillo",
+        "direccion": "Dirección Pasaje La Merced N°4350, Rodelillo.",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6383",
+            "horario":"",
+            "poblacion_preferente": ""
+        }
+    },
+    {
+        "nombre": "CESFAM Las Cañas",
+        "direccion": "Los Alerces 260, esquina Demóstenes, C° Las Cañas, Valparaíso.",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "2571758;2571781;2571783;800 500 511",
+            "horario":"",
+            "poblacion_preferente": ""
+        } 
+    },
+    {
+        "nombre": "CESFAM Placeres",
+        "direccion": "Manuel Casanova 289, Población Sara Braun, Cerro Los Placeres, Valparaíso.",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 9:00 a 13:00 horas.",
+        "telefono": {
+            "numero": "800 500 513",
+            "horario":"",
+            "poblacion_preferente": ""
+        }  
+    },
+    {
+        "nombre": "SAPU Placeres",
+        "direccion": "Manuel Casanova 289, Población Sara Braun, Cerro Los Placeres, Valparaíso.",
+        "horario": "Lunes a Viernes de 17:00 a 8:00 horas del día siguiente. Sábado, Domingo y Festivos las 24 horas.",
+        "telefono": {
+            "numero": "32 213 6502",
+            "horario":"17:00 a 8:00 horas del día siguiente",
+            "poblacion_preferente": ""
+        }  
+    },
+    {
+        "nombre": "CESFAM Placilla",
+        "direccion": "Calle Octava 724, esquina central, Placilla- Peñuelas.",
+        "horario": "Lunes a Viernes de 8:30 a 20:00 horas. Sábado 8:30 a 13:00 horas.",
+        "telefono": {
+            "numero": "32 213 6108",
+            "horario":"",
+            "poblacion_preferente": ""
+        }   
+    },
+    {
+        "nombre": "SAPU Placilla",
+        "direccion": "Calle Octava 724, esquina central, Placilla- Peñuelas.",
+        "horario": "Lunes a Viernes de 17:00 a 8:00 horas del día siguiente. Fines de semana las 24 horas.",
+        "telefono": {
+            "numero": "32 213 6108",
+            "horario":"",
+            "poblacion_preferente": ""
+        }   
+    },
+    {
+        "nombre": "CECOSF Porvenir Bajo",
+        "direccion": "Contulmo N°383 (Ex calle 23 S/N)  Porvenir Bajo, Playa Ancha, Valparaíso.",
+        "horario": "Lunes a Viernes de 8:00 a 17:00 horas.",
+        "telefono": {
+            "numero": "32 234 6062",
+            "horario":"",
+            "poblacion_preferente": ""
+        }  
+    },
+    {
+        "nombre": "Hospital Van Buren",
+        "direccion": "San Ignacio 725, Valparaíso.",
+        "horario": "Lunes a Viernes de 8:00 a 17:00 horas.",
+        "telefono": {
+            "numero": "32 236 4000",
+            "horario":"",
+            "poblacion_preferente": ""
+        }  
+    },
+    {
+        "nombre": "Hospital Psiquiátrico Del Salvador",
+        "direccion": "Subida Carvallo 200, Playa Ancha, Valparaíso.",
+        "horario": "Lunes a Viernes de 8:00 a 17:00 horas.",
+        "telefono": {
+            "numero": "32 234 6062",
+            "horario":"",
+            "poblacion_preferente": ""
+        }  
+    }
+]
