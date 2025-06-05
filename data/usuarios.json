@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "fecha_nacimiento": "15/04/19",
+    "genero": "Masculino"
+  },
+  {
+    "id": 2,
+    "nombre": "María González",
+    "fecha_nacimiento": "22/09/1985",
+    "genero": "Femenino"
+  }
+]

@@ -10,6 +10,7 @@ import (
 	"chicuco/api/pkg/center"
 	"chicuco/api/pkg/contacto"
 	"chicuco/api/pkg/hito"
+	"chicuco/api/pkg/usuarios"
 )
 
 // Api represents the API with its address and endpoints
@@ -41,7 +42,14 @@ func (a *Api) Mount() http.Handler {
 	r.Get("/v1/centros_de_salud", center.HandlerCentros) // Funcion para obtener los centros
 
 	// Rutas POST
-	r.Post("/v1/hitos", hito.HandlerHitos) // Funcion para obtener el hito según la edad del infante
+	r.Post("/v1/usuarios/listar", usuarios.ListarUsuarios) // Funcion para obtener todos los usuarios
+	r.Post("/v1/usuarios/crear", usuarios.CrearUsuario)    // Funcion para crear un usuario
+	r.Post("/v1/usuarios/editar", usuarios.EditarUsuario)  // Funcion para modificar un usuario
+	r.Post("/v1/usuarios/buscar", usuarios.BuscarUsuario)  // Funcion para obtener los datos de un usuario específico
+	r.Post("/v1/hitos", hito.HandlerHitos)                 // Funcion para obtener el hito según la edad del infante
+
+	// Rutas DELETE
+	r.Delete("/v1/usuarios/eliminar", usuarios.EliminarUsuario) // Funcion para eliminar un usuario
 
 	// Retornar el router
 	return r
