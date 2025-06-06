@@ -1,0 +1,15 @@
+<div class="panel-superior">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="logout()">
+          <ion-back-button default-href="#"></ion-back-button>
+        </ion-button>
+      </ion-buttons>
+      <app-info-seccion
+        [titulo]="titulo"
+        [subtitulo]="subtitulo">
+      </app-info-seccion>
+      </ion-toolbar>
+  </ion-header>
+</div>

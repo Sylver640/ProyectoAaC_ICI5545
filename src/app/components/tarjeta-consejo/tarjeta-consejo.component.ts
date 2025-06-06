@@ -5,7 +5,13 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle }
   selector: 'app-tarjeta-consejo',
   templateUrl: './tarjeta-consejo.component.html',
   styleUrls: ['./tarjeta-consejo.component.scss'],
-  imports: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle],
+  imports: [
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle
+  ],
 })
 export class TarjetaConsejoComponent implements OnInit {
   private _titulo = 'Título por defecto';
