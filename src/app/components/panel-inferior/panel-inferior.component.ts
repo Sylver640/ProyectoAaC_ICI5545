@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 import { addIcons } from 'ionicons';
 import { library, playCircle, radio, search } from 'ionicons/icons';
@@ -12,8 +13,15 @@ import { library, playCircle, radio, search } from 'ionicons/icons';
 })
 export class PanelInferiorComponent  implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
     addIcons({ library, playCircle, radio, search });
+
+  }
+  onTabChange(event: any) {
+    if (event.tab === 'consejos') {
+      this.router.navigate(['/tab/consejos']);
+      this.router
+    }
   }
   ngOnInit() {}
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
 
 @Component({
@@ -57,9 +58,10 @@ export class TarjetaConsejoComponent implements OnInit {
 
   onCardClick() {
     console.log('Tarjeta clickeada:', this.titulo);
+    this.router.navigate(['/tab/consejos/id']); // <-- Navega a la página consejos
   }
 
-  constructor() {
+  constructor(private router: Router) {
   }
   ngOnInit() {}
 }

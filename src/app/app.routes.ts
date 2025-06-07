@@ -9,8 +9,18 @@ export const routes: Routes = [
       { path: `inicio`,
         loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
       },
-      { path: `consejos`,
-        loadComponent: () => import('./pages/consejos/consejos.page').then((m) => m.ConsejosPage),
+      {
+        path: 'consejos',
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./pages/consejos/consejos.page').then(m => m.ConsejosPage)
+          },
+          {
+            path: 'id',
+            loadComponent: () => import('./pages/consejos/mostrar-consejo/mostrar-consejo.page').then(m => m.MostrarConsejoPage)
+          }
+        ]
       },
       { path: `calendario`,
         loadComponent: () => import('./pages/calendario/calendario.page').then( m => m.CalendarioPage),
@@ -21,13 +31,13 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
     redirectTo: 'tab/inicio',
     pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
   },
   {
     path: 'inicio',
@@ -45,5 +55,8 @@ export const routes: Routes = [
     path: 'sucursales',
     loadComponent: () => import('./pages/sucursales/sucursales.page').then( m => m.SucursalesPage)
   },
-
+  {
+    path: 'mostrar-consejo',
+    loadComponent: () => import('./pages/consejos/mostrar-consejo/mostrar-consejo.page').then( m => m.MostrarConsejoPage)
+  },
 ];
