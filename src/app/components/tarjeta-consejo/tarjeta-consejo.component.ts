@@ -58,7 +58,7 @@ export class TarjetaConsejoComponent implements OnInit {
 
   onCardClick() {
     console.log('Tarjeta clickeada:', this.titulo);
-    this.router.navigate(['/tab/consejos/id']); // <-- Navega a la página consejos
+    this.router.navigate(['/tab/consejos/:id']); // <-- Navega a la página consejos
   }
 
   constructor(private router: Router) {

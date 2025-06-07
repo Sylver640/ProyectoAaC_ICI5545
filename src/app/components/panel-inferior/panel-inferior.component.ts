@@ -20,7 +20,6 @@ export class PanelInferiorComponent  implements OnInit {
   onTabChange(event: any) {
     if (event.tab === 'consejos') {
       this.router.navigate(['/tab/consejos']);
-      this.router
     }
   }
   ngOnInit() {}

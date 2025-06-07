@@ -5,6 +5,7 @@ import { TarjetaConsejoComponent } from '../../components/tarjeta-consejo/tarjet
 import { PanelSuperiorComponent } from '../../components/panel-superior/panel-superior.component';
 import { PanelInferiorComponent } from '../../components/panel-inferior/panel-inferior.component';
 import { IonContent, IonList } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -80,8 +81,11 @@ export class ConsejosPage implements OnInit {
     }
   ];
 
-  constructor() { }
+ constructor(private router: Router) {}
 
+  verConsejo(index: number) {
+    this.router.navigate(['tab/consejos', index]);
+  }
   ngOnInit() {
   }
 
