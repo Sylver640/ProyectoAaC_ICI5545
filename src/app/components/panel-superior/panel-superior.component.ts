@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { InfoSeccionComponent } from '../info-seccion/info-seccion.component';
 import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton } from '@ionic/angular/standalone';
 
@@ -12,13 +13,15 @@ import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton } from '@io
     IonToolbar,
     IonButtons,
     IonButton,
-    IonBackButton
+    IonBackButton,
+    CommonModule
   ]
 })
 export class PanelSuperiorComponent  implements OnInit {
 
   private _titulo: string = 'Panel Superior';
   private _subtitulo: string = 'Subtítulo del Panel Superior';
+  private _button: boolean = true;
 
   @Input() set titulo(value: string) {
     this._titulo = value;
@@ -31,6 +34,13 @@ export class PanelSuperiorComponent  implements OnInit {
   }
   get subtitulo(): string {
     return this._subtitulo;
+  }
+
+  @Input() set button(value: boolean) {
+    this._button = value;
+  }
+  get button(): boolean {
+    return this._button;
   }
 
   constructor() { }

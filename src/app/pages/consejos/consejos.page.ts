@@ -42,7 +42,7 @@ export class ConsejosPage implements OnInit {
       class: 'consejo-reposo',
       titulo: 'Consejos de reposo y sueño',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'descanzo',
+      color: 'descanso',
       type: 'descanso'
     },
     {
