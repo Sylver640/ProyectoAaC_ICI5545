@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 
 export class ConsejosPage implements OnInit {
 
-  nombre = 'rodrigo';
+  nombre = 'Rodrigo';
   titulo = 'Consejos para ' + this.nombre;
   edad = '2 años y 3 meses';
 
@@ -34,56 +34,50 @@ export class ConsejosPage implements OnInit {
     {
       class: 'consejo-alimentacion',
       titulo: 'Consejos de alimentación',
-      subtitulo: 'Importante',
-      contenido: 'Recuerda lavar las manos antes de cada comida.',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'alimentos'
+      color: 'alimentos',
+      type: 'alimentacion'
     },
     {
       class: 'consejo-reposo',
       titulo: 'Consejos de reposo y sueño',
-      subtitulo: 'Recomendado',
-      contenido: 'Asegúrate de que duerma al menos 10 horas cada noche.',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'descanzo'
+      color: 'descanzo',
+      type: 'descanso'
     },
     {
       class: 'consejo-estimulacion',
       titulo: 'Consejos de estimulación del desarrollo',
-      subtitulo: 'Salud',
-      contenido: 'Incluye frutas y verduras en su dieta diaria.',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'estimulacion'
+      color: 'estimulacion',
+      type: 'estimulación'
     },
     {
       class: 'consejo-prevencion',
       titulo: 'Consejos de alerta y prevención de accidentes',
-      subtitulo: 'Seguridad',
-      contenido: 'Mantén los objetos pequeños fuera de su alcance.',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'prevencion'
+      color: 'prevencion',
+      type: 'prevencion'
     },
     {
       class: 'consejo-bienestar',
       titulo: 'Consejos de bienestar',
-      subtitulo: 'Desarrollo',
-      contenido: 'Lee cuentos juntos todos los días.',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'emocional'
+      color: 'emocional',
+      type: 'bienestar'
     },
     {
       class: 'consejo-cuidados',
       titulo: 'Consejos de Cuidados generales',
-      subtitulo: 'Actividad',
-      contenido: 'Fomenta el juego al aire libre siempre que sea posible.',
       imgUrl: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-      color: 'cuidados'
+      color: 'cuidados',
+      type: 'cuidados'
     }
   ];
 
  constructor(private router: Router) {}
 
-  verConsejo(index: number) {
+  verConsejo(index: string) {
     this.router.navigate(['tab/consejos', index]);
   }
   ngOnInit() {

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
 
@@ -11,13 +12,14 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle }
     IonCardContent,
     IonCardHeader,
     IonCardSubtitle,
-    IonCardTitle
+    IonCardTitle,
+    CommonModule
   ],
 })
 export class TarjetaConsejoComponent implements OnInit {
   private _titulo = 'Título por defecto';
-  private _subtitulo = 'Subtítulo por defecto';
-  private _contenido = 'Contenido por defecto';
+  private _subtitulo = '';
+  private _contenido = '';
   private _imgUrl = 'https://ionicframework.com/docs/img/demos/thumbnail.svg';
   private _color = 'primary';
 
@@ -29,14 +31,14 @@ export class TarjetaConsejoComponent implements OnInit {
   }
 
   @Input() set subtitulo(val: string) {
-    this._subtitulo = val || 'Subtítulo por defecto';
+    this._subtitulo = val || '';
   }
   get subtitulo() {
     return this._subtitulo;
   }
 
   @Input() set contenido(val: string) {
-    this._contenido = val || 'Contenido por defecto';
+    this._contenido = val || '';
   }
   get contenido() {
     return this._contenido;
@@ -54,11 +56,6 @@ export class TarjetaConsejoComponent implements OnInit {
   }
   get color() {
     return this._color;
-  }
-
-  onCardClick() {
-    console.log('Tarjeta clickeada:', this.titulo);
-    this.router.navigate(['/tab/consejos/:id']); // <-- Navega a la página consejos
   }
 
   constructor(private router: Router) {

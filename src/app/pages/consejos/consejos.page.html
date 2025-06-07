@@ -10,14 +10,12 @@
   <div>
     <div class="lista-consejos">
        <ion-list>
-        <app-tarjeta-consejo *ngFor="let consejo of consejos;  let i = index"
+        <app-tarjeta-consejo *ngFor="let consejo of consejos"
           [class]="consejo.class"
           [titulo]="consejo.titulo"
-          [subtitulo]="consejo.subtitulo"
-          [contenido]="consejo.contenido"
           [imgUrl]="consejo.imgUrl"
           [color]="consejo.color"
-          (click)="verConsejo(i)">
+          (click)="verConsejo(consejo.type)">
         </app-tarjeta-consejo>
       </ion-list>
     </div>
