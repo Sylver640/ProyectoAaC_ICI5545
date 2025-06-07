@@ -3,15 +3,21 @@ import { PanelInferiorComponent } from './components/panel-inferior/panel-inferi
 
 export const routes: Routes = [
   {
-    path: 'test_tab',
+    path: 'tab',
     component: PanelInferiorComponent,
     children: [
-      { path: `home`,
+      { path: `inicio`,
         loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
       },
       { path: `consejos`,
         loadComponent: () => import('./pages/consejos/consejos.page').then((m) => m.ConsejosPage),
-      }
+      },
+      { path: `calendario`,
+        loadComponent: () => import('./pages/calendario/calendario.page').then( m => m.CalendarioPage),
+      },
+      { path: `sucursales`,
+        loadComponent: () => import('./pages/sucursales/sucursales.page').then((m) => m.SucursalesPage),
+      },
     ]
   },
   {
@@ -20,7 +26,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'test_tab/home',
+    redirectTo: 'tab/inicio',
     pathMatch: 'full',
   },
   {
@@ -30,6 +36,14 @@ export const routes: Routes = [
   {
     path: 'consejos',
     loadComponent: () => import('./pages/consejos/consejos.page').then( m => m.ConsejosPage)
+  },
+  {
+    path: 'calendario',
+    loadComponent: () => import('./pages/calendario/calendario.page').then( m => m.CalendarioPage)
+  },
+  {
+    path: 'sucursales',
+    loadComponent: () => import('./pages/sucursales/sucursales.page').then( m => m.SucursalesPage)
   },
 
 ];
