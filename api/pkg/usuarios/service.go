@@ -137,41 +137,57 @@ func BuscarUsuario(w http.ResponseWriter, r *http.Request) {
 
 // 4. Editar usuario (POST)
 func EditarUsuario(w http.ResponseWriter, r *http.Request) {
+	// Definir struct de datos a manejar
 	var req struct {
 		ID              string `json:"id"`
 		Nombre          string `json:"nombre"`
 		FechaNacimiento string `json:"fecha_nacimiento"`
 		Genero          string `json:"genero"`
 	}
+	// Decodificar los datos del body
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Datos inválidos", http.StatusBadRequest)
 		return
 	}
+	// Leer los usuarios
 	usuarios, err := leerUsuarios()
 	if err != nil {
 		http.Error(w, "Error al leer usuarios", http.StatusInternalServerError)
 		return
 	}
+	// Buscar el usuario a editar
 	encontrado := false
 	for i, u := range usuarios {
 		if u.ID == req.ID {
-			usuarios[i].Nombre = req.Nombre
-			usuarios[i].FechaNacimiento = req.FechaNacimiento
-			usuarios[i].Genero = req.Genero
+			// Preguntar si el nombre está vacio, si lo está omitir el cambio
+			if req.Nombre != "" {
+				usuarios[i].Nombre = req.Nombre
+			}
+			// Preguntar si la fecha de nacimiento está vacio, si lo está omitir el cambio
+			if req.FechaNacimiento != "" {
+				usuarios[i].FechaNacimiento = req.FechaNacimiento
+			}
+			// Preguntar si el género está vacio, si lo está omitir el cambio
+			if req.Genero != "" {
+				usuarios[i].Genero = req.Genero
+			}
 			encontrado = true
 			break
 		}
 	}
+	// Si el usuario no se encuentra, devolver un error
 	if !encontrado {
 		resp := map[string]interface{}{"error": "Usuario no encontrado", "status": 404}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(resp)
 		return
 	}
+	// Guardar los usuarios
 	if err := guardarUsuarios(usuarios); err != nil {
 		http.Error(w, "Error al guardar usuario", http.StatusInternalServerError)
 		return
 	}
+	// Devolver el mensaje de éxito
 	resp := map[string]interface{}{"mensaje": "Usuario actualizado", "status": 200}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resp)

@@ -1,13 +1,13 @@
 [
   {
-    "id": 1,
-    "nombre": "Juan Pérez",
-    "fecha_nacimiento": "15/04/19",
+    "id": "7614aa3e563bd09bbee2dcaed3500137161efa76fb862a9438fd0cc836dc5de3",
+    "nombre": "Juan",
+    "fecha_nacimiento": "15/04/1998",
     "genero": "Masculino"
   },
   {
-    "id": 2,
-    "nombre": "María González",
+    "id": "c6bbc59f1c8605a02ba6dc6de305cd7354cce94f2511c5405ec07a01f0b3bd7a",
+    "nombre": "María",
     "fecha_nacimiento": "22/09/1985",
     "genero": "Femenino"
   }
