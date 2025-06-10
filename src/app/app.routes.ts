@@ -3,19 +3,16 @@ import { PanelInferiorComponent } from './components/panel-inferior/panel-inferi
 
 export const routes: Routes = [
   {
-<<<<<<< HEAD
     path: '',
     redirectTo: 'inicio',
     pathMatch: 'full',
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
-=======
     path: 'tab',
     component: PanelInferiorComponent,
     children: [
-      { path: `inicio`,
+      {
+        path: 'inicio',
         loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
       },
       {
@@ -23,27 +20,23 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            loadComponent: () => import('./pages/consejos/consejos.page').then(m => m.ConsejosPage)
+            loadComponent: () => import('./pages/consejos/consejos.page').then(m => m.ConsejosPage),
           },
           {
             path: ':id',
-            loadComponent: () => import('./pages/consejos/mostrar-consejo/mostrar-consejo.page').then(m => m.MostrarConsejoPage)
-          }
-        ]
+            loadComponent: () => import('./pages/consejos/mostrar-consejo/mostrar-consejo.page').then(m => m.MostrarConsejoPage),
+          },
+        ],
       },
-      { path: `calendario`,
-        loadComponent: () => import('./pages/calendario/calendario.page').then( m => m.CalendarioPage),
+      {
+        path: 'calendario',
+        loadComponent: () => import('./pages/calendario/calendario.page').then(m => m.CalendarioPage),
       },
-      { path: `sucursales`,
+      {
+        path: 'sucursales',
         loadComponent: () => import('./pages/sucursales/sucursales.page').then((m) => m.SucursalesPage),
       },
-    ]
-  },
-  {
-    path: '',
-    redirectTo: 'tab/inicio',
-    pathMatch: 'full',
->>>>>>> 395800b4d22552317da6168d09ded670f178b561
+    ],
   },
   {
     path: 'home',
@@ -51,27 +44,31 @@ export const routes: Routes = [
   },
   {
     path: 'inicio',
-    loadComponent: () => import('./pages/inicio/inicio.page').then( m => m.InicioPage)
+    loadComponent: () => import('./pages/inicio/inicio.page').then(m => m.InicioPage),
   },
   {
-<<<<<<< HEAD
     path: 'perfil',
-    loadComponent: () => import('./pages/perfil/perfil.page').then( m => m.PerfilPage)
-=======
+    loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage),
+  },
+  {
     path: 'consejos',
-    loadComponent: () => import('./pages/consejos/consejos.page').then( m => m.ConsejosPage)
+    loadComponent: () => import('./pages/consejos/consejos.page').then(m => m.ConsejosPage),
   },
   {
     path: 'calendario',
-    loadComponent: () => import('./pages/calendario/calendario.page').then( m => m.CalendarioPage)
+    loadComponent: () => import('./pages/calendario/calendario.page').then(m => m.CalendarioPage),
   },
   {
     path: 'sucursales',
-    loadComponent: () => import('./pages/sucursales/sucursales.page').then( m => m.SucursalesPage)
+    loadComponent: () => import('./pages/sucursales/sucursales.page').then(m => m.SucursalesPage),
   },
   {
     path: 'mostrar-consejo',
-    loadComponent: () => import('./pages/consejos/mostrar-consejo/mostrar-consejo.page').then( m => m.MostrarConsejoPage)
->>>>>>> 395800b4d22552317da6168d09ded670f178b561
+    loadComponent: () => import('./pages/consejos/mostrar-consejo/mostrar-consejo.page').then(m => m.MostrarConsejoPage),
   },
+  {
+    path: 'campos-infante',
+    loadComponent: () => import('./pages/campos-infante/campos-infante.page').then( m => m.CamposInfantePage)
+  },
+
 ];
