@@ -1,0 +1,24 @@
+<ion-content class="ion-padding">
+  <ion-list *ngIf="perfiles.length > 0; else sinPerfiles">
+
+    <ion-item *ngFor="let perfil of perfiles">
+      <ion-avatar slot="start">
+        <img src="assets/icon/default_avatar.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ perfil.nombre }}</h2>
+        <p>{{ perfil.fechaNacimiento }}</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end" (click)="editarPerfil(perfil)">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+  </ion-list>
+
+  <ng-template #sinPerfiles>
+    <div class="ion-text-center">
+      <p>No hay perfiles guardados.</p>
+    </div>
+  </ng-template>
+</ion-content>
