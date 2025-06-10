@@ -1,3 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="volver()">
+        <img src="assets/icon/arrow_back.png" alt="Volver" style="width: 24px; height: 24px;" />
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
   <ion-list *ngIf="perfiles.length > 0; else sinPerfiles">
 
@@ -9,9 +20,12 @@
         <h2>{{ perfil.nombre }}</h2>
         <p>{{ perfil.fechaNacimiento }}</p>
       </ion-label>
-      <ion-button fill="clear" slot="end" (click)="editarPerfil(perfil)">
-        <ion-icon name="create-outline"></ion-icon>
-      </ion-button>
+
+      <div class="perfil-container" (click)="editarPerfil(perfil)">
+        <ion-avatar>
+          <img src="assets/icon/Edit.png">
+        </ion-avatar>
+      </div>
     </ion-item>
 
   </ion-list>

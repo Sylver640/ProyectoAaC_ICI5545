@@ -28,4 +28,8 @@ export class ConfiguracionPage implements OnInit {
   editarPerfil(perfil: any) {
     this.router.navigate(['/editar-perfil'], { state: { perfil } });
   }
+
+  volver() {
+    this.router.navigate(['/perfil']);
+  }
 }
