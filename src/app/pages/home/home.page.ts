@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // <-- Agrega esto
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 
 @Component({
@@ -8,5 +9,9 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private router: Router) {} // <-- Inyecta el router
+
+  consejos() {
+    this.router.navigate(['/consejos']); // <-- Navega a la página consejos
+  }
 }
