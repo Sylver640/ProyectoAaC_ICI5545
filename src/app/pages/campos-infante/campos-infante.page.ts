@@ -20,7 +20,11 @@ export class CamposInfantePage {
     nombre: '',
     fechaNacimiento: '',
     genero: ''
+    
   };
+
+  errorEdad: string = '';
+
 
   onCancel() {
     // Limpiar formulario o navegar hacia atrás
@@ -29,20 +33,33 @@ export class CamposInfantePage {
   }
 
   onSave() {
-    // Simula un ID, esto puede cambiarse por un UUID o autoincremental si usas almacenamiento local
+    const hoy = new Date();
+    const fechaNac = new Date(this.formData.fechaNacimiento);
+
+    const edad = hoy.getFullYear() - fechaNac.getFullYear();
+    const mes = hoy.getMonth() - fechaNac.getMonth();
+    const dia = hoy.getDate() - fechaNac.getDate();
+
+    const tieneMasDe10 = edad > 10 || (edad === 10 && (mes > 0 || (mes === 0 && dia > 0)));
+
+    if (tieneMasDe10) {
+      this.errorEdad = 'La edad del infante supera los 10 años.';
+      return;
+    }
+
+    this.errorEdad = '';
+
     const nuevoPerfil = {
       id: Date.now(),
       nombre: this.formData.nombre,
       fechaNacimiento: this.formData.fechaNacimiento,
       genero: this.formData.genero,
     };
-  
-    // Guardar en almacenamiento local
+
     let perfiles = JSON.parse(localStorage.getItem('perfiles') || '[]');
     perfiles.push(nuevoPerfil);
     localStorage.setItem('perfiles', JSON.stringify(perfiles));
-  
-    // Regresar a la página de perfiles
+
     this.router.navigate(['/perfil']);
   }
 }

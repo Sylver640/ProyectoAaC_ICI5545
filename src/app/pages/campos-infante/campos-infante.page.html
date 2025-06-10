@@ -18,6 +18,9 @@
           presentation="date"
           [(ngModel)]="formData.fechaNacimiento">
         </ion-datetime>
+        <ion-text color="danger" *ngIf="errorEdad">
+          <p>{{ errorEdad }}</p>
+        </ion-text>
       </ion-item>
       
       <ion-item class="form-item">
