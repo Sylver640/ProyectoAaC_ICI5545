@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TarjetaConsejoComponent } from '../../components/tarjeta-consejo/tarjeta-consejo.component';
-import { PanelSuperiorComponent } from '../../components/panel-superior/panel-superior.component';
-import { PanelInferiorComponent } from '../../components/panel-inferior/panel-inferior.component';
+import { PanelSuperiorComponent } from '../../components/panel-superior/panel-superior.component'
 import { IonContent, IonList } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
@@ -17,7 +16,6 @@ import { Router } from '@angular/router';
     IonContent,
     IonList,
     PanelSuperiorComponent,
-    PanelInferiorComponent,
     TarjetaConsejoComponent,
     CommonModule,
     FormsModule

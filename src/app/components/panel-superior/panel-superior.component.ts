@@ -20,7 +20,7 @@ import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton } from '@io
 export class PanelSuperiorComponent  implements OnInit {
 
   private _titulo: string = 'Panel Superior';
-  private _subtitulo: string = 'Subtítulo del Panel Superior';
+  private _subtitulo: string = '';
   private _button: boolean = true;
 
   @Input() set titulo(value: string) {

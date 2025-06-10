@@ -35,3 +35,13 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 /*@import '@ionic/angular/css/palettes/dark.system.css'; */
+
+
+.ion-modal.modal-reducido {
+  --width: 90vw;
+  --max-width: 400px;
+  --height: auto;
+  --max-height: 80vh;
+  --border-radius: 16px;
+  --box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}

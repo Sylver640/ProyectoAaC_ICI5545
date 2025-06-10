@@ -9,8 +9,6 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle }
   styleUrls: ['./tarjeta-consejo.component.scss'],
   imports: [
     IonCard,
-    IonCardContent,
-    IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
     CommonModule

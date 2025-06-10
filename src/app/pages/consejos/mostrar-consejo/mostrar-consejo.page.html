@@ -4,7 +4,7 @@
 ></app-panel-superior>
 
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" (click)="closeModal()">
   <div>
     <div>
        <ion-list>
@@ -12,6 +12,7 @@
             [titulo]="consejo.titulo"
             [subtitulo]="consejo.contenido"
             [color]="consejo.color"
+            (click)="openModal(consejo)"
           ></app-tarjeta-consejo>
       </ion-list>
     </div>

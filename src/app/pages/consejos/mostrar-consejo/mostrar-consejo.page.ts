@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { ConsejosService } from 'src/app/services/consejos.service';
 import { ActivatedRoute } from '@angular/router';
+import { TestModalComponent } from 'src/app/components/test-modal/test-modal.component';
 import { TarjetaConsejoComponent } from 'src/app/components/tarjeta-consejo/tarjeta-consejo.component';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
 import { IonContent, IonList, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -12,14 +14,46 @@ import { IonContent, IonList, IonHeader, IonTitle, IonToolbar } from '@ionic/ang
   templateUrl: './mostrar-consejo.page.html',
   styleUrls: ['./mostrar-consejo.page.scss'],
   standalone: true,
-  imports: [ TarjetaConsejoComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, PanelSuperiorComponent, IonList]
+  imports: [ TestModalComponent,TarjetaConsejoComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, PanelSuperiorComponent, IonList],
+  providers: [ModalController],
 })
 export class MostrarConsejoPage implements OnInit {
 
   consejo: any
   data: any;
+  private currentModal: HTMLIonModalElement | null = null;
 
-  constructor(private route: ActivatedRoute, private consejoservice: ConsejosService) { }
+  constructor(private route: ActivatedRoute, private consejoservice: ConsejosService, private modalCtrl: ModalController) { }
+
+  async openModal(consejo: any) {
+    if (this.currentModal) {
+      await this.currentModal.dismiss();
+      this.currentModal = null;
+      return this.currentModal;
+    }
+    this.currentModal = await this.modalCtrl.create({
+      component: TestModalComponent,
+      componentProps: {
+        consejo: consejo,
+      },
+      breakpoints: [0, 0.5, 0.8],
+    });
+
+    this.currentModal.onDidDismiss().then(() => {
+      this.currentModal = null;
+    });
+
+    await this.currentModal.present();
+    return this.currentModal;
+  }
+
+  async closeModal() {
+    if (this.currentModal) {
+      await this.currentModal.dismiss();
+      this.currentModal = null;
+      return;
+    }
+  }
 
   ngOnInit() {
     const index = this.route.snapshot.paramMap.get('id');
