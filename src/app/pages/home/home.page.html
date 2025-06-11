@@ -1,18 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <div class="top-bar">
+    <img src="assets/icon/arrow_back.png" class="icon-left" (click)="goBack()"/>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div id="container">
-    <strong>Este es el menú</strong>
+    <div class="greeting">
+      <div class="saludo">¡Hola {{ perfil.nombre }}!</div>
+      <div class="edad">{{ edadTexto }}</div>
+    </div>
+
+    <div class="icon-group">
+      <img src="assets/icon/contactos.png" class="icon-right" (click)="irContactos()"/>
+      <img src="assets/icon/notificaciones.png" class="icon-right" (click)="irNotificaciones()"/>
+    </div>
   </div>
+
+  <!-- seguir... -->
+
 </ion-content>

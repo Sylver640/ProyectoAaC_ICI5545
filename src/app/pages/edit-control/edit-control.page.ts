@@ -63,11 +63,11 @@ export class EditControlPage implements OnInit {
   
     await this.mensajeGuardado(); // ✅ Mostrar mensaje al guardar correctamente
   
-    this.router.navigate(['/calendario']);
+    this.router.navigate(['/tab/calendario']);
   }
 
   cancelar(){
-    this.router.navigate(['/calendario']);
+    this.router.navigate(['/tab/calendario']);
   }
 
   async mensajeGuardado() {

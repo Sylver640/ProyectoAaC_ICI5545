@@ -1,27 +1,36 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.icon-left {
+  font-size: 24px;
+  cursor: pointer;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.greeting {
+  flex-grow: 1;
+  margin-left: 1rem;
 }
 
-#container a {
-  text-decoration: none;
+.saludo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.edad {
+  font-size: 14px;
+  color: gray;
+}
+
+.icon-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-right {
+  font-size: 22px;
+  color: #5c27fe;
 }
