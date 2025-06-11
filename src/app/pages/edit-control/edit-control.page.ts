@@ -33,6 +33,10 @@ export class EditControlPage implements OnInit {
   errorFormulario: string = '';
 
   ngOnInit() {
+    const fechaISO = localStorage.getItem('fechaSeleccionada');
+    if (fechaISO) {
+      this.form.fecha = fechaISO;  
+    }
   }
 
   async guardar() {
@@ -50,11 +54,12 @@ export class EditControlPage implements OnInit {
   
     const nuevaActividad = {
       id: Date.now(),
-      fecha: this.form.fecha,
+      fecha: this.form.fecha,  // ej: '2025-08-02'
       ubicacion: this.form.ubicacion,
       mensaje: this.form.mensaje,
       recordatorio: this.form.recordatorio,
-      diasAntes: this.form.diasAntes
+      diasAntes: this.form.diasAntes,
+      fechaISO: this.form.fecha  //  esta línea es CLAVE para que el calendario la reconozca
     };
   
     let actividades = JSON.parse(localStorage.getItem('actividades') || '[]');

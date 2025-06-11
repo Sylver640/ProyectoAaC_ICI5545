@@ -26,7 +26,8 @@
     </div>
   
     <!-- Card con la actividad -->
-    <ion-card class="activity-card" *ngIf="actividad">
+    <ion-card class="activity-card" *ngIf="actividad !== null">
+
       <ion-card-header>
         <ion-card-title>
           <ion-icon name="information-circle-outline"></ion-icon>
@@ -45,12 +46,13 @@
       <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
       <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
       <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
-      <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad()" />
+      <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
       
     </ion-card>
   
     <!-- Botón agregar, solo si hay actividad -->
-    <img *ngIf="actividad" src="assets/icon/add_circle.png" class="add-button" (click)="agregarActividad()" />
+    <img *ngIf="fechaSeleccionada" src="assets/icon/add_circle.png" class="add-button" (click)="agregarActividad()" />
+
   </ion-content>
 
 
