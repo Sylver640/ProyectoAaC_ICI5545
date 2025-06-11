@@ -2,14 +2,6 @@
     --padding-bottom: 80px;
   }
 
-  ion-datetime::part(calendar-day) {
-    color: white !important;
-  }
-  
-  ion-datetime::part(calendar-day-active) {
-    color: white !important;
-    background: #9d4edd !important;
-  }
   
   .calendar-box {
     background: linear-gradient(to bottom, #89c5fd, #6ed3cf);

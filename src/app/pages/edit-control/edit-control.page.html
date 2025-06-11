@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>edit-control</ion-title>
+    <ion-title>Próxima actividad</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">edit-control</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+
+      <!-- Fecha -->
+      <ion-item>
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="form.fecha"
+          locale="es-ES"
+          placeholder="Seleccione una fecha">
+        </ion-datetime>
+      </ion-item>
+      
+      <!-- Ubicación -->
+      <ion-item>
+        <ion-label position="stacked">Ubicación</ion-label>
+        <ion-select [(ngModel)]="form.ubicacion" placeholder="Seleccione">
+          <ion-select-option *ngFor="let lugar of ubicaciones" [value]="lugar">{{ lugar }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Mensaje -->
+      <ion-item>
+        <ion-label position="floating">Mensaje</ion-label>
+        <ion-input [(ngModel)]="form.mensaje" type="text"></ion-input>
+      </ion-item>
+
+      <!-- Habilitar recordatorio -->
+      <ion-item lines="none">
+        <ion-checkbox slot="start" [(ngModel)]="form.recordatorio"></ion-checkbox>
+        <ion-label>Habilitar recordatorio</ion-label>
+      </ion-item>
+
+      <!-- Días antes de la notificación -->
+      <ion-item *ngIf="form.recordatorio">
+        <ion-label position="stacked">¿Cuántos días antes desea recibir las notificaciones?</ion-label>
+        <ion-input type="number" [(ngModel)]="form.diasAntes"></ion-input>
+      </ion-item>
+
+      <!-- Botones Guardar y Cancelar -->
+      <div class="ion-padding-top ion-text-center">
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="6">
+              <ion-button expand="block" color="medium" (click)="cancelar()">Cancelar</ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" color="dark" (click)="guardar()">Guardar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div class="perfil-container" (click)="mensajeGuardado()"></div>
+
+      <ion-text color="danger" *ngIf="errorFormulario">
+        <p>{{ errorFormulario }}</p>
+      </ion-text>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

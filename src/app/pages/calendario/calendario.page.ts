@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonContent,
   IonHeader,
@@ -52,6 +53,8 @@ export class CalendarioPage {
     descripcion: '',
   };
 
+  constructor (private router: Router){}
+
   onDateChange(event: any) {
     const fecha = new Date(event.detail.value);
     const dia = fecha.getDate();
@@ -82,5 +85,6 @@ export class CalendarioPage {
 
   agregarActividad() {
     console.log('Agregar nueva actividad');
+    this.router.navigate(['/edit-control']);
   }
 }

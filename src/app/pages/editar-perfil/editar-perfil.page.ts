@@ -26,12 +26,15 @@ export class EditarPerfilPage implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.perfilId = Number(this.route.snapshot.paramMap.get('id'));
-    const perfiles = JSON.parse(localStorage.getItem('perfiles') || '[]');
-    const perfil = perfiles.find((p: any) => p.id === this.perfilId);
-
-    if (perfil) {
-      this.formData = { ...perfil };
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras?.state as { perfil: any };
+  
+    if (state?.perfil) {
+      this.perfilId = state.perfil.id;
+      this.formData = { ...state.perfil };
+    } else {
+      // Fallback: redirigir si no hay datos
+      this.router.navigate(['/configuracion']);
     }
   }
 
