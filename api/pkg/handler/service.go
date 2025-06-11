@@ -7,9 +7,11 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 
+	"chicuco/api/pkg/actividades"
 	"chicuco/api/pkg/center"
 	"chicuco/api/pkg/contacto"
 	"chicuco/api/pkg/hito"
+	"chicuco/api/pkg/sugerencias"
 	"chicuco/api/pkg/usuarios"
 )
 
@@ -47,6 +49,18 @@ func (a *Api) Mount() http.Handler {
 	r.Post("/v1/usuarios/editar", usuarios.EditarUsuario)  // Funcion para modificar un usuario
 	r.Post("/v1/usuarios/buscar", usuarios.BuscarUsuario)  // Funcion para obtener los datos de un usuario específico
 	r.Post("/v1/hitos", hito.HandlerHitos)                 // Funcion para obtener el hito según la edad del infante
+
+	// Rutas ACTIVIDADES
+	r.Post("/v1/actividades/listar", actividades.ListarActividades)
+	r.Post("/v1/actividades/crear", actividades.CrearActividad)
+	r.Post("/v1/actividades/editar", actividades.EditarActividad)
+	r.Post("/v1/actividades/eliminar", actividades.EliminarActividad)
+	r.Post("/v1/actividades/completar", actividades.MarcarCompletada)
+
+	// Rutas SUGERENCIAS
+	r.Get("/v1/sugerencias/listar", sugerencias.ListarConsejos)
+	r.Post("/v1/sugerencias/por_edad_categoria", sugerencias.ListarConsejosPorEdadYCategoria)
+	r.Post("/v1/sugerencias/por_edad", sugerencias.ListarConsejosPorEdad)
 
 	// Rutas DELETE
 	r.Delete("/v1/usuarios/eliminar", usuarios.EliminarUsuario) // Funcion para eliminar un usuario
