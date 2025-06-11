@@ -1,7 +1,0 @@
-{
-  "name": "seremi",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}
