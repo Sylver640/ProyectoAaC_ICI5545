@@ -38,7 +38,7 @@
       <ion-card-content>
         <p><strong>Ubicación:</strong> {{ actividad?.ubicacion || 'Ubicación' }}</p>
         <p><strong>Fecha:</strong> {{ actividad?.fecha || 'Fecha' }}</p>
-        <p>{{ actividad?.descripcion || '(Descripción control)' }}</p>
+        <p>{{ actividad?.descripcion || actividad?.mensaje }}</p>
       </ion-card-content>
 
       <!-- Imágenes posicionadas alrededor de la card -->
