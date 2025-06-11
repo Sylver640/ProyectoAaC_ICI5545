@@ -20,6 +20,8 @@ export class EditarPerfilPage implements OnInit {
   };
 
   perfilId: number = 0;
+  errorEdad: string = '';
+  errorFormulario: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -38,14 +40,41 @@ export class EditarPerfilPage implements OnInit {
   }
 
   onUpdate() {
+    // Validar campos vacíos
+    if (!this.formData.nombre || !this.formData.fechaNacimiento || !this.formData.genero) {
+      this.errorFormulario = 'Todos los campos son obligatorios.';
+      return;
+    }
+  
+    this.errorFormulario = ''; // Limpiar si todo está bien
+  
+    // Validar edad
+    const hoy = new Date();
+    const fechaNac = new Date(this.formData.fechaNacimiento);
+  
+    const edad = hoy.getFullYear() - fechaNac.getFullYear();
+    const mes = hoy.getMonth() - fechaNac.getMonth();
+    const dia = hoy.getDate() - fechaNac.getDate();
+  
+    const tieneMasDe10 = edad > 10 || (edad === 10 && (mes > 0 || (mes === 0 && dia > 0)));
+  
+    if (tieneMasDe10) {
+      this.errorEdad = 'La edad del infante supera los 10 años.';
+      return;
+    }
+  
+    this.errorEdad = ''; // Limpiar error si todo está correcto
+  
+    // Guardar cambios
     let perfiles = JSON.parse(localStorage.getItem('perfiles') || '[]');
     const index = perfiles.findIndex((p: any) => p.id === this.perfilId);
-
+  
     if (index !== -1) {
       perfiles[index] = { id: this.perfilId, ...this.formData };
       localStorage.setItem('perfiles', JSON.stringify(perfiles));
     }
-
+  
     this.router.navigate(['/configuracion']);
   }
+
 }

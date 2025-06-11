@@ -18,7 +18,7 @@
       </ion-avatar>
       <ion-label>
         <h2>{{ perfil.nombre }}</h2>
-        <p>{{ perfil.fechaNacimiento }}</p>
+        <p>Fecha de nacimiento: {{ perfil.fechaNacimiento | date:'yyyy-MM-dd' }}</p>
       </ion-label>
 
       <div class="perfil-container" (click)="editarPerfil(perfil)">

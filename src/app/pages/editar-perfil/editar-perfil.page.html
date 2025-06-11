@@ -19,6 +19,9 @@
           [(ngModel)]="formData.fechaNacimiento"
           placeholder="Selecciona una fecha">
         </ion-datetime>
+        <ion-text color="danger" *ngIf="errorEdad">
+          <p>{{ errorEdad }}</p>
+        </ion-text>
       </ion-item>
 
       <ion-item class="form-item">
@@ -29,6 +32,10 @@
           <ion-select-option value="otro">Otro</ion-select-option>
         </ion-select>
       </ion-item>
+
+      <ion-text color="danger" *ngIf="errorFormulario">
+        <p>{{ errorFormulario }}</p>
+      </ion-text>
 
       <div class="button-group">
         <ion-button color="medium" expand="block" (click)="onCancel()">Cancelar</ion-button>
