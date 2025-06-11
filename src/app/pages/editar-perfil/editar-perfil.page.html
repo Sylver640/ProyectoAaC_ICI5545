@@ -1,0 +1,48 @@
+<ion-content class="ion-padding">
+
+  <div class="avatar-container">
+    <img src="assets/icon/default_avatar.png" alt="Avatar">
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+
+      <ion-item class="form-item">
+        <ion-label position="floating">Nombre y apellido</ion-label>
+        <ion-input [(ngModel)]="formData.nombre" placeholder="Escribe el nombre" label-placement="floating" ></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Fecha de nacimiento</ion-label>
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="formData.fechaNacimiento"
+          placeholder="Selecciona una fecha">
+        </ion-datetime>
+        <ion-text color="danger" *ngIf="errorEdad">
+          <p>{{ errorEdad }}</p>
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label>Género</ion-label>
+        <ion-select placeholder="Selecciona" [(ngModel)]="formData.genero">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="femenino">Femenino</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="errorFormulario">
+        <p>{{ errorFormulario }}</p>
+      </ion-text>
+
+      <div class="button-group">
+        <ion-button color="medium" expand="block" (click)="onCancel()">Cancelar</ion-button>
+        <ion-button color="primary" expand="block" (click)="onUpdate()">Actualizar</ion-button>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
