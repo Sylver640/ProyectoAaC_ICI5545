@@ -14,4 +14,5 @@ export class HomePage {
   consejos() {
     this.router.navigate(['/consejos']); // <-- Navega a la página consejos
   }
+  
 }

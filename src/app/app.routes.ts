@@ -69,14 +69,19 @@ export const routes: Routes = [
   {
     path: 'campos-infante',
     loadComponent: () => import('./pages/campos-infante/campos-infante.page').then( m => m.CamposInfantePage)
-  },  {
+  },
+  {
     path: 'configuracion',
     loadComponent: () => import('./pages/configuracion/configuracion.page').then( m => m.ConfiguracionPage)
   },
   {
     path: 'editar-perfil',
     loadComponent: () => import('./pages/editar-perfil/editar-perfil.page').then( m => m.EditarPerfilPage)
+  },  {
+    path: 'edit-control',
+    loadComponent: () => import('./pages/edit-control/edit-control.page').then( m => m.EditControlPage)
   },
+
 
 
 ];
