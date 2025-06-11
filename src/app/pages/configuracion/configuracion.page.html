@@ -23,9 +23,15 @@
 
       <div class="perfil-container" (click)="editarPerfil(perfil)">
         <ion-avatar>
-          <img src="assets/icon/Edit.png">
+          <img src="assets/icon/Edit.png" class="icon-button-img">
         </ion-avatar>
       </div>
+
+      <div class="perfil-container" (click)="confirmarEliminacion(perfil)">
+    <ion-avatar>
+      <img src="assets/icon/delete.png" class="icon-button-img">
+    </ion-avatar>
+  </div>
     </ion-item>
 
   </ion-list>

@@ -3,6 +3,8 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-configuracion',
@@ -14,10 +16,14 @@ export class ConfiguracionPage implements OnInit {
 
   perfiles: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertCtrl: AlertController) {}
 
   ngOnInit() {
     this.cargarPerfiles();
+  }
+
+  ionViewWillEnter() {
+    this.cargarPerfiles(); // Se ejecuta cada vez que se entra a la vista
   }
 
   cargarPerfiles() {
@@ -31,5 +37,29 @@ export class ConfiguracionPage implements OnInit {
 
   volver() {
     this.router.navigate(['/perfil']);
+  }
+
+  eliminarPerfil(perfil: any) {
+    this.perfiles = this.perfiles.filter(p => p.id !== perfil.id);
+    localStorage.setItem('perfiles', JSON.stringify(this.perfiles));
+  }
+
+  async confirmarEliminacion(perfil: any) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmar eliminación',
+      message: `¿Estás seguro de que deseas eliminar el perfil de ${perfil.nombre}?`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Sí, eliminar',
+          handler: () => this.eliminarPerfil(perfil)
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 }

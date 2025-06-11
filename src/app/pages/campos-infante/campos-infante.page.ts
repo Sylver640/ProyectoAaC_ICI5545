@@ -24,6 +24,7 @@ export class CamposInfantePage {
   };
 
   errorEdad: string = '';
+  errorFormulario: string = '';
 
 
   onCancel() {
@@ -33,6 +34,15 @@ export class CamposInfantePage {
   }
 
   onSave() {
+
+    // Validar campos vacíos
+    if (!this.formData.nombre || !this.formData.fechaNacimiento || !this.formData.genero) {
+      this.errorFormulario = 'Todos los campos son obligatorios.';
+      return;
+    }
+
+    this.errorFormulario = ''; // Limpiar error si todo está lleno
+
     const hoy = new Date();
     const fechaNac = new Date(this.formData.fechaNacimiento);
 
@@ -48,6 +58,7 @@ export class CamposInfantePage {
     }
 
     this.errorEdad = '';
+    
 
     const nuevoPerfil = {
       id: Date.now(),

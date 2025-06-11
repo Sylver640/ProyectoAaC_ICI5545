@@ -28,8 +28,12 @@
         <ion-select placeholder="Value" [(ngModel)]="formData.genero">
           <ion-select-option value="masculino">Masculino</ion-select-option>
           <ion-select-option value="femenino">Femenino</ion-select-option>
-¿        </ion-select>
+        </ion-select>
       </ion-item>
+
+      <ion-text color="danger" *ngIf="errorFormulario">
+        <p>{{ errorFormulario }}</p>
+      </ion-text>
 
       <div class="button-group">
         <ion-button color="medium" expand="block" (click)="onCancel()">Cancelar</ion-button>
