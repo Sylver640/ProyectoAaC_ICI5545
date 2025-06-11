@@ -1,0 +1,21 @@
+.info-seccion {
+  min-height: 120px; // O la altura que desees
+  height: 120px;     // Puedes ajustar este valor
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Centra verticalmente el contenido
+
+  /* Opcional: para ver el área */
+  // background: #f5f5f5;
+}
+
+.info-seccion h1 {
+  margin: 0 0 0.5px 0; // margen inferior de 8px, puedes ajustar
+  font-size: 1.4rem;   // ajusta el tamaño si lo deseas
+}
+
+.info-seccion p {
+  margin: 0px 0px 0px 5px;         // sin margen
+  font-size: 1.1rem; // ajusta el tamaño si lo deseas
+}

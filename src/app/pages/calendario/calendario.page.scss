@@ -2,20 +2,33 @@
     --padding-bottom: 80px;
   }
 
-  
+  ion-datetime::part(calendar-day) {
+    color: white !important;
+  }
+
+  ion-datetime::part(calendar-day-active) {
+    color: white !important;
+    background: #9d4edd !important;
+  }
+
+
   .calendar-box {
     background: linear-gradient(to bottom, #89c5fd, #6ed3cf);
     border-radius: 20px;
     color: white;
-  }  
-  
+  }
+
+
+
   .custom-calendar {
     width: 100%;
     --background: transparent;
     --ion-color-primary: #9d4edd;
     --ion-color-primary-contrast: #fff;
+    --ion-text-color: #fff;
+    --ion-text-rgb: 255, 255, 255;
   }
-  
+
 
   /* Ajustes para activity-card */
 .activity-card {
@@ -25,7 +38,7 @@
     text-align: center;
     background-color: #fff;
   }
-  
+
   /* Flechas en las esquinas superiores */
   .arrow {
     position: absolute;
@@ -35,15 +48,15 @@
     cursor: pointer;
     z-index: 2;
   }
-  
+
   .left-arrow {
     left: 10px; /* Esquina superior izquierda */
   }
-  
+
   .right-arrow {
     right: 10px; /* Esquina superior derecha */
   }
-  
+
   /* Iconos en el borde inferior */
   .icon-button {
     position: absolute;
@@ -52,38 +65,39 @@
     z-index: 2;
     cursor: pointer;
   }
-  
+
   /* Posicionando el check_circle en la esquina inferior izquierda */
   .check-icon {
     left: 10px; /* Esquina inferior izquierda */
     bottom: 10px; /* Ajusta la distancia desde la parte inferior */
   }
-  
+
   /* Posicionando el pen_tool en la esquina inferior derecha */
   .edit-icon {
     right: 10px; /* Esquina inferior derecha */
     bottom: 10px; /* Ajusta la distancia desde la parte inferior */
   }
-  
+
   .trash-icon {
     float: right;
     font-size: 1.2rem;
     cursor: pointer;
   }
-  
+
   /* Botón agregar */
   .agregar-btn {
     display: flex;
     justify-content: center;
     margin-top: 40px;
   }
-  
+
+
   .add-icon {
     width: 48px;
     height: 48px;
     cursor: pointer;
   }
-  
+
   .custom-footer {
     position: fixed;
     bottom: 0;
@@ -91,10 +105,10 @@
   }
 
   .large-title {
-    font-size: 18px;    
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
-    color: #9d4edd;         
+    color: #9d4edd;
   }
 
   .add-button {

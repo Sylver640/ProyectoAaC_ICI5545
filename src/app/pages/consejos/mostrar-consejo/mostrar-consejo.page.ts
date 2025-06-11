@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { ConsejosService } from 'src/app/services/consejos.service';
+import { SugerenciasService } from 'src/app/services/sugerencias.service';
 import { ActivatedRoute } from '@angular/router';
 import { TestModalComponent } from 'src/app/components/test-modal/test-modal.component';
 import { TarjetaConsejoComponent } from 'src/app/components/tarjeta-consejo/tarjeta-consejo.component';
@@ -23,7 +24,7 @@ export class MostrarConsejoPage implements OnInit {
   data: any;
   private currentModal: HTMLIonModalElement | null = null;
 
-  constructor(private route: ActivatedRoute, private consejoservice: ConsejosService, private modalCtrl: ModalController) { }
+  constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService, private consejoservice: ConsejosService, private modalCtrl: ModalController) { }
 
   async openModal(consejo: any) {
     if (this.currentModal) {
@@ -60,46 +61,41 @@ export class MostrarConsejoPage implements OnInit {
     // Aquí puedes obtener el consejo usando el índice, por ejemplo desde un servicio o localStorage
     // this.consejo = ...;
     this.data = this.consejoservice.getConsejos(index);
+    console.log(this.sugerenciaservice.listarConsejos());
     switch (index) {
       case 'alimentacion':
         this.consejo = {
-          titulo: 'Consejo de alimentación',
-          contenido: 'Contenido del consejo 1',
+          titulo: 'Consejos de alimentación',
           type: 'alimentacion',
         };
         break;
       case 'descanso':
         this.consejo = {
-          titulo: 'Consejo de sueño y descanso',
-          contenido: 'Contenido del consejo 2',
+          titulo: 'Consejos de sueño y descanso',
           type: 'descanso',
         };
         break;
       case 'estimulación':
         this.consejo = {
           titulo: 'Consejos de estimulación del desarrollo',
-          contenido: 'Contenido del consejo 3',
           type: 'estimulación',
         };
         break;
       case 'prevencion':
         this.consejo = {
           titulo: 'Consejos de alerta y prevención de accidentes',
-          contenido: 'Contenido del consejo 4',
           type: 'prevencion',
         };
         break;
       case 'bienestar':
         this.consejo = {
-          titulo: 'Consejo de bienestar',
-          contenido: 'Contenido del consejo 5',
+          titulo: 'Consejos de bienestar',
           type: 'bienestar',
         };
         break;
       case 'cuidados':
         this.consejo = {
-          titulo: 'Consejo de cuidados generales',
-          contenido: 'Contenido del consejo 6',
+          titulo: 'Consejos de cuidados generales',
           type: 'cuidados',
         };
         break;
@@ -111,5 +107,4 @@ export class MostrarConsejoPage implements OnInit {
         };
     }
   }
-
 }

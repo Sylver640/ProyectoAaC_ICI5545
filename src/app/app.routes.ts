@@ -47,6 +47,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/inicio/inicio.page').then(m => m.InicioPage),
   },
   {
+
     path: 'perfil',
     loadComponent: () => import('./pages/perfil/perfil.page').then(m => m.PerfilPage),
   },
@@ -77,7 +78,8 @@ export const routes: Routes = [
   {
     path: 'editar-perfil',
     loadComponent: () => import('./pages/editar-perfil/editar-perfil.page').then( m => m.EditarPerfilPage)
-  },  {
+  },
+  {
     path: 'edit-control',
     loadComponent: () => import('./pages/edit-control/edit-control.page').then( m => m.EditControlPage)
   },
