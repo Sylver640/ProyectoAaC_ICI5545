@@ -1,0 +1,32 @@
+[
+    {
+        "nombre": "Fono infantil",
+        "telefono": "800 200 818",
+        "descripcion": "Responde dudas relacionadas con la crianza y desarrollo de niños y niñas: pataletas, agresividad, retraimiento, pesadillas, control de esfínteres, etc."
+    },
+    {
+        "nombre": "Salud Responde",
+        "telefono": "600 360 7777",
+        "descripcion": "Responde dudas relacionadas con problemas de salud, síntomas y cuidados, recepcionan reclamos, dan información de campañas de vacunación, etc."
+    },
+    {
+        "nombre": "Fono Mujer y Maternidad",
+        "telefono": "800 520 100",
+        "descripcion": "Entregan orientación  respecto al postnatal (plazo, requisitos, aviso al empleador, etc.) y dan acompañamiento emocional."
+    },
+    {
+        "nombre": "Fono Niños",
+        "telefono": "147",
+        "descripcion": "Reciben denuncias de maltrato u otras vulneraciones de derechos a niños y niñas."
+    },
+    {
+        "nombre": "Fono Familia",
+        "telefono": "149",
+        "descripcion": "Reciben responden y deriven llamadas, entregando en forma rápida y oportuna apoyo a quienes sean víctimas de violencia familiar."
+    },
+    {
+        "nombre": "CITUC Centro de Información Toxicológica",
+        "telefono": "2 2635 3800",
+        "descripcion": "Orientan en el tratamiento de pacientes intoxicados."
+    }
+]
