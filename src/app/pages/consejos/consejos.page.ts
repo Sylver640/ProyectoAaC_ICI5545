@@ -24,10 +24,8 @@ import { Router } from '@angular/router';
 
 export class ConsejosPage implements OnInit {
 
-  nombre = 'Rodrigo';
-  titulo = 'Consejos para ' + this.nombre;
-  edad = '2 años y 3 meses';
-
+  perfil: any = [];
+  edad = 0;
   consejos = [
     {
       class: 'consejo-alimentacion',
@@ -75,10 +73,37 @@ export class ConsejosPage implements OnInit {
 
  constructor(private router: Router) {}
 
+  calcularEdad(fechaNacimiento: string): string {
+    if (!fechaNacimiento) return '';
+    const nacimiento = new Date(fechaNacimiento);
+    const hoy = new Date();
+
+    let años = hoy.getFullYear() - nacimiento.getFullYear();
+    let meses = hoy.getMonth() - nacimiento.getMonth();
+
+    if (meses < 0) {
+      años--;
+      meses += 12;
+    }
+
+    // Opcional: Si quieres mostrar solo meses si es menor a 1 año
+    if (años === 0) return `${meses} mes${meses === 1 ? '' : 'es'}`;
+    if (meses === 0) return `${años} año${años === 1 ? '' : 's'}`;
+    return `${años} año${años === 1 ? '' : 's'} y ${meses} mes${meses === 1 ? '' : 'es'}`;
+  }
+
   verConsejo(index: string) {
     this.router.navigate(['tab/consejos', index]);
   }
+
+  cargarPerfil() {
+    const data = localStorage.getItem('perfilSeleccionado');
+    this.perfil = data ? JSON.parse(data) : [];
+  }
+
   ngOnInit() {
+    this.cargarPerfil();
+    console.log('Perfil cargado:', this.perfil);
   }
 
 }
