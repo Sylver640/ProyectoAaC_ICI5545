@@ -83,6 +83,10 @@ export const routes: Routes = [
     path: 'edit-control',
     loadComponent: () => import('./pages/edit-control/edit-control.page').then( m => m.EditControlPage)
   },
+  {
+    path: 'contactos',
+    loadComponent: () => import('./pages/contactos/contactos.page').then( m => m.ContactosPage)
+  },
 
 
 

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <img src="assets/icon/arrow_back.png" class="icon-left" (click)="goBack()"/>
+    <ion-title>Contactos de emergencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contactos-content">
+  <div class="contactos-container">
+    <div class="contacto" *ngFor="let contacto of contactos">
+      <img src="assets/icon/contactos.png" name="call" class="icono"/>
+      <div class="texto">
+        <p class="nombre">{{ contacto.nombre }}</p>
+        <p class="numero">{{ contacto.numero }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
