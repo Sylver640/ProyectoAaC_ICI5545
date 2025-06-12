@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
 import {
   IonContent,
   IonHeader,
@@ -43,7 +44,8 @@ import {
     IonIcon,
     IonDatetime,
     IonTabButton,
-    IonLabel
+    IonLabel,
+    PanelSuperiorComponent
   ]
 })
 export class CalendarioPage {
@@ -94,24 +96,24 @@ export class CalendarioPage {
 
   eliminarActividad() {
     if (this.actividades.length === 0) return;
-  
+
     // Eliminar la actividad actual directamente (sin confirm)
     this.actividades.splice(this.actividadActual, 1);
-  
+
     // Ajustar el índice actual si es necesario
     if (this.actividadActual >= this.actividades.length) {
       this.actividadActual = Math.max(0, this.actividades.length - 1);
     }
-  
+
     // Guardar en localStorage
     localStorage.setItem('actividades', JSON.stringify(this.actividades));
-  
+
     console.log('Actividad eliminada');
   }
 
   async confirmarEliminacionActividad() {
     const actividad = this.actividades[this.actividadActual];
-  
+
     const alert = await this.alertCtrl.create({
       header: 'Eliminar actividad',
       message: `¿Deseas eliminar la actividad "${actividad.nombre}"?`,
@@ -126,7 +128,7 @@ export class CalendarioPage {
         }
       ]
     });
-  
+
     await alert.present();
   }
 

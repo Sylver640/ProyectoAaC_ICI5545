@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoSeccionComponent } from '../info-seccion/info-seccion.component';
-import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton, IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-panel-superior',
@@ -14,7 +14,8 @@ import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton } from '@io
     IonButtons,
     IonButton,
     IonBackButton,
-    CommonModule
+    CommonModule,
+    IonIcon
   ]
 })
 export class PanelSuperiorComponent  implements OnInit {
@@ -22,6 +23,8 @@ export class PanelSuperiorComponent  implements OnInit {
   private _titulo: string = 'Panel Superior';
   private _subtitulo: string = '';
   private _button: boolean = true;
+
+  @Input() onBack?: () => void;
 
   @Input() set titulo(value: string) {
     this._titulo = value;
@@ -44,10 +47,6 @@ export class PanelSuperiorComponent  implements OnInit {
   }
 
   constructor() { }
-
-  logout() {
-    console.log('Logout clicked');
-  }
 
   ngOnInit() {}
 

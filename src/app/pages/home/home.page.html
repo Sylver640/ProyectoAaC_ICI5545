@@ -1,18 +1,15 @@
-<ion-content class="ion-padding">
-  <div class="top-bar">
-    <img src="assets/icon/arrow_back.png" class="icon-left" (click)="goBack()"/>
-
-    <div class="greeting">
-      <div class="saludo">¡Hola {{ perfil.nombre }}!</div>
-      <div class="edad">{{ edadTexto }}</div>
-    </div>
-
-    <div class="icon-group">
+<app-panel-superior
+  [button]="true"
+  [onBack]="goBack.bind(this)"
+  [titulo] ="'¡Hola ' + perfil.nombre +'!'"
+  [subtitulo]= "edadTexto"
+>
+<div class="icon-group">
       <img src="assets/icon/contactos.png" class="icon-right" (click)="irContactos()"/>
       <img src="assets/icon/notificaciones.png" class="icon-right" (click)="irNotificaciones()"/>
-    </div>
-  </div>
+</div>
+</app-panel-superior>
 
-  <!-- seguir... -->
+<ion-content class="ion-padding">
 
 </ion-content>

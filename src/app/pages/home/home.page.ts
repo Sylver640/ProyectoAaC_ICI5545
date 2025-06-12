@@ -1,14 +1,16 @@
-import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Component,importProvidersFrom,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-
+import { PanelSuperiorComponent} from 'src/app/components/panel-superior/panel-superior.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, PanelSuperiorComponent],
+  standalone: true
 })
+
 export class HomePage implements OnInit {
   perfil: any = {};
   edadTexto: string = '';
@@ -16,12 +18,18 @@ export class HomePage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const nav = this.router.getCurrentNavigation();
-    const state = nav?.extras?.state as { perfil: any };
-    if (state?.perfil) {
-      this.perfil = state.perfil;
+
+    this.cargarPerfil();
+    if (this.perfil.fechaNacimiento) {
       this.edadTexto = this.calcularEdad(this.perfil.fechaNacimiento);
+    } else {
+      this.edadTexto = 'Fecha de nacimiento no disponible';
     }
+  }
+
+  cargarPerfil() {
+    const data = localStorage.getItem('perfilSeleccionado');
+    this.perfil = data ? JSON.parse(data) : [];
   }
 
   goBack() {
@@ -46,6 +54,6 @@ export class HomePage implements OnInit {
     this.router.navigate(['/contactos']);
   }
   irNotificaciones(){
-    
+
   }
 }

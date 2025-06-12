@@ -1,6 +1,4 @@
-.info-seccion {
-  min-height: 120px; // O la altura que desees
-  height: 120px;     // Puedes ajustar este valor
+.info-seccion {    // Puedes ajustar este valor
 
   display: flex;
   flex-direction: column;
@@ -11,11 +9,26 @@
 }
 
 .info-seccion h1 {
-  margin: 0 0 0.5px 0; // margen inferior de 8px, puedes ajustar
-  font-size: 1.4rem;   // ajusta el tamaño si lo deseas
+  margin: 0 0 0px 0; // margen inferior de 8px, puedes ajustar
+  display: block; // para que ocupe todo el ancho disponible
+  font-size: 1.5rem;   // ajusta el tamaño si lo deseas
+  font-weight: bold; // negrita
+  text-align: left; // centra el texto
+  line-height: 1.2; // ajusta el interlineado si lo deseas
+  text-transform: uppercase; // opcional, para mayúsculas
+  letter-spacing: 0.05em; // opcional, para espaciado entre letras // para evitar que las palabras largas se salgan del contenedor
+  overflow-wrap: break; // para evitar que las palabras largas se salgan del contenedor
 }
 
-.info-seccion p {
+.info-seccion samp {
   margin: 0px 0px 0px 5px;         // sin margen
   font-size: 1.1rem; // ajusta el tamaño si lo deseas
+  font-weight: normal; // sin negrita
+  text-align: left; // alinea el texto a la izquierda
+  line-height: 1.2; // ajusta el interlineado si lo deseas
+  white-space: pre-wrap; // para mantener los espacios y saltos de línea
+  overflow-wrap: break-word; // para evitar que las palabras largas se salgan del contenedor
+  max-width: 100%; // para que no se salga del contenedor
+  display: block; // para que ocupe todo el ancho disponible
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); // sombra sutil, opcional
 }

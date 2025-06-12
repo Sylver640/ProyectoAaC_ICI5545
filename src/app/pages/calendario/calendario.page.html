@@ -1,10 +1,7 @@
-<ion-header>
-  <ion-toolbar color="light">
-    <ion-title class="large-title">
-      Calendario de actividades
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-panel-superior
+  [button]="false"
+  [titulo]="'Calendario de actividades'">
+</app-panel-superior>
 
 <ion-content class="ion-padding calendario-content">
   <ion-card class="calendar-box">
@@ -46,7 +43,7 @@
       <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
       <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
       <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad()" />
-      
+
     </ion-card>
 
     <!-- Botón agregar, solo si hay actividad -->
