@@ -12,7 +12,7 @@
       <ion-datetime
         presentation="date"
         locale="es-ES"
-        value="2025-08-18"
+        value="2025-08-11"
         (ionChange)="onDateChange($event)"
         class="custom-calendar">
       </ion-datetime>
@@ -26,28 +26,30 @@
     </div>
 
     <!-- Card con la actividad -->
-    <ion-card class="activity-card" *ngIf="actividad !== null">
-
+    <ion-card class="activity-card">
       <ion-card-header>
         <ion-card-title>
-          <ion-icon name="information-circle-outline"></ion-icon>
-          {{ actividad?.nombre || 'Nombre actividad' }}
-          <ion-icon name="trash-outline" slot="end" class="trash-icon"></ion-icon>
+          Actividad
         </ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-        <p><strong>Ubicación:</strong> {{ actividad?.ubicacion || 'Ubicación' }}</p>
-        <p><strong>Fecha:</strong> {{ actividad?.fecha || 'Fecha' }}</p>
-        <p>{{ actividad?.descripcion || actividad?.mensaje }}</p>
+      <ion-card-content *ngIf="actividad">
+        <p><strong>Ubicación:</strong> {{ actividad.ubicacion }}</p>
+        <p><strong>Fecha:</strong> {{ actividad.fecha }}</p>
+        <p>{{ actividad.descripcion || actividad.mensaje }}</p>
       </ion-card-content>
-
-      <!-- Imágenes posicionadas alrededor de la card -->
-      <img src="assets/icon/arrow_left.png" class="arrow left-arrow" (click)="prevActividad()" />
-      <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
-      <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
-      <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
-      <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
-      
+    
+      <ion-card-content *ngIf="!actividad">
+        <p>No hay actividad registrada para esta fecha.</p>
+      </ion-card-content>
+    
+      <!-- Botones y flechas solo si hay actividad -->
+      <ng-container *ngIf="actividad">
+        <img src="assets/icon/arrow_left.png" class="arrow left-arrow" (click)="prevActividad()" />
+        <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
+        <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
+        <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
+        <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
+      </ng-container>
     </ion-card>
 
     <!-- Botón agregar, solo si hay actividad -->

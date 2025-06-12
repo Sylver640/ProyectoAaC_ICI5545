@@ -54,21 +54,23 @@ export class EditControlPage implements OnInit {
   
     const nuevaActividad = {
       id: Date.now(),
-      fecha: this.form.fecha,  // ej: '2025-08-02'
+      fecha: this.form.fecha,
       ubicacion: this.form.ubicacion,
       mensaje: this.form.mensaje,
       recordatorio: this.form.recordatorio,
       diasAntes: this.form.diasAntes,
-      fechaISO: this.form.fecha  //  esta línea es CLAVE para que el calendario la reconozca
+      fechaISO: this.form.fecha,
     };
   
     let actividades = JSON.parse(localStorage.getItem('actividades') || '[]');
     actividades.push(nuevaActividad);
     localStorage.setItem('actividades', JSON.stringify(actividades));
   
-    await this.mensajeGuardado(); // ✅ Mostrar mensaje al guardar correctamente
+    await this.mensajeGuardado();
+    
   
-    this.router.navigate(['/tab/calendario']);
+    // Navegar de vuelta al calendario
+    this.router.navigateByUrl('/tab/calendario', { replaceUrl: true });
   }
 
   cancelar(){

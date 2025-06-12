@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
@@ -55,9 +55,20 @@ export class CalendarioPage {
   actividadActual: number = 0;
   fechaSeleccionada: string = ''; // formato ISO
 
-  constructor (private router: Router,private alertCtrl: AlertController){}
+  constructor (private router: Router,private alertCtrl: AlertController,private cdr: ChangeDetectorRef){}
 
   ngOnInit() {
+    this.cargarActividades();  // Recargar actividades cada vez que se acceda al calendario
+  }
+
+  ionViewWillEnter() {
+    // Recargar actividades cada vez que la página se muestra
+    const datos = localStorage.getItem('actividades');
+    this.actividades = datos ? JSON.parse(datos) : [];
+    console.log('Actividades recargadas:', this.actividades);
+  }
+
+  cargarActividades() {
     const datos = localStorage.getItem('actividades');
     this.actividades = datos ? JSON.parse(datos) : [];
     console.log('Actividades cargadas:', this.actividades);
@@ -73,23 +84,22 @@ export class CalendarioPage {
 
   onDateChange(event: any) {
     const fechaISO = event.detail.value?.split('T')[0]; // extraer solo la parte YYYY-MM-DD
-  
     this.fechaSeleccionada = fechaISO;
-  
+
     // Filtrar actividades de ese día
     this.actividadesDelDia = this.actividades.filter(
       act => act.fechaISO === fechaISO
     );
 
     console.log('Actividades del día:', this.actividadesDelDia);
-    
+
     if (this.actividadesDelDia.length > 0) {
       this.actividadActual = 0;
       this.actividad = this.actividadesDelDia[0];
     } else {
       this.actividad = null;
     }
-  
+
     console.log('Fecha seleccionada:', this.fechaSeleccionada);
   }
 
@@ -117,8 +127,7 @@ export class CalendarioPage {
   }
 
   editarActividad(id: number) {
-    console.log('editar actividad');
-    this.router.navigate(['/edit-actividad']);
+    this.router.navigate(['/edit-actividad', id]);
   }
 
   eliminarActividad() {
@@ -179,8 +188,12 @@ export class CalendarioPage {
 
   agregarActividad() {
     if (!this.fechaSeleccionada) return;
-  
-    localStorage.setItem('fechaSeleccionada', this.fechaSeleccionada); // opcional
+    localStorage.setItem('fechaSeleccionada', this.fechaSeleccionada);
     this.router.navigate(['/edit-control']);
+  }
+
+  actualizarCalendario() {
+    this.cargarActividades(); // Recargamos las actividades
+    this.cdr.detectChanges();  // Forzamos la actualización de la vista
   }
 }

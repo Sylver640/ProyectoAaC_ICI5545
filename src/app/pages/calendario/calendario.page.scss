@@ -1,6 +1,12 @@
+ion-card-title {
+  color: black !important;
+}
+
 .calendario-content {
     --padding-bottom: 80px;
   }
+
+  
 
   ion-datetime::part(calendar-day) {
     color: white !important;

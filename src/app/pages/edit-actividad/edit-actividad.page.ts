@@ -9,6 +9,7 @@ import { AlertController } from '@ionic/angular';
 interface Actividad {
   id: number;
   fecha: string;
+  fechaISO?: string;
   ubicacion: string;
   mensaje: string;
   recordatorio: boolean;
@@ -105,8 +106,9 @@ export class EditActividadPage implements OnInit {
     if (index !== -1) {
       // Actualizar la actividad con los nuevos datos
       actividades[index] = {
-        id: this.actividadId!, // Aquí aseguramos que actividadId no es null
+        id: this.actividadId!,
         fecha: this.form.fecha,
+        fechaISO: this.form.fecha.split('T')[0], // <- aquí extraemos YYYY-MM-DD
         ubicacion: this.form.ubicacion,
         mensaje: this.form.mensaje,
         recordatorio: this.form.recordatorio,
