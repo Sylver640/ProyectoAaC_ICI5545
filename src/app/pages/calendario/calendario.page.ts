@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
@@ -49,70 +49,126 @@ import {
   ]
 })
 export class CalendarioPage {
-  actividad: any = {
-    nombre: '',
-    ubicacion: '',
-    fecha: '',
-    descripcion: '',
-  };
+  actividad: any = null;
 
-  actividades: any[] = []; //array de actividades
+
+  actividades: any[] = [];
+  actividadesDelDia: any[] = [];
   actividadActual: number = 0;
+  fechaSeleccionada: string = ''; // formato ISO
 
-  constructor (private router: Router,private alertCtrl: AlertController){}
+  constructor (private router: Router,private alertCtrl: AlertController,private cdr: ChangeDetectorRef){}
 
   ngOnInit() {
-    const datos = localStorage.getItem('actividades');
-    this.actividades = datos ? JSON.parse(datos) : [];
+    this.cargarActividades();  // Recargar actividades cada vez que se acceda al calendario
   }
 
-  onDateChange(event: any) {
-    const fecha = new Date(event.detail.value);
+  ionViewWillEnter() {
+    // Recargar actividades cada vez que la página se muestra
+    const datos = localStorage.getItem('actividades');
+    this.actividades = datos ? JSON.parse(datos) : [];
+    console.log('Actividades recargadas:', this.actividades);
+  }
+
+  cargarActividades() {
+    const datos = localStorage.getItem('actividades');
+    this.actividades = datos ? JSON.parse(datos) : [];
+    console.log('Actividades cargadas:', this.actividades);
+  }
+
+  formatFecha(fechaISO: string): string {
+    const fecha = new Date(fechaISO);
     const dia = fecha.getDate();
     const mes = fecha.toLocaleString('es-ES', { month: 'long' });
     const año = fecha.getFullYear();
+    return `${dia} ${mes} ${año}`;
+  }
 
-    this.actividad.fecha = `${dia} ${mes} ${año}`;
+  onDateChange(event: any) {
+    const fechaISO = event.detail.value?.split('T')[0]; // extraer solo la parte YYYY-MM-DD
+    this.fechaSeleccionada = fechaISO;
 
-    // Aquí podrías buscar la actividad real según la fecha
-    console.log('Fecha seleccionada:', this.actividad.fecha);
+    // Filtrar actividades de ese día
+    this.actividadesDelDia = this.actividades.filter(
+      act => act.fechaISO === fechaISO
+    );
+
+    console.log('Actividades del día:', this.actividadesDelDia);
+
+    if (this.actividadesDelDia.length > 0) {
+      this.actividadActual = 0;
+      this.actividad = this.actividadesDelDia[0];
+    } else {
+      this.actividad = null;
+    }
+
+    console.log('Fecha seleccionada:', this.fechaSeleccionada);
   }
 
   prevActividad() {
-    console.log('Anterior actividad');
+    if (this.actividadesDelDia.length === 0) return;
+
+    this.actividadActual =
+      (this.actividadActual - 1 + this.actividadesDelDia.length) %
+      this.actividadesDelDia.length;
+
+    this.actividad = this.actividadesDelDia[this.actividadActual];
   }
 
   nextActividad() {
-    console.log('Siguiente actividad');
+    if (this.actividadesDelDia.length === 0) return;
+
+    this.actividadActual =
+      (this.actividadActual + 1) % this.actividadesDelDia.length;
+
+    this.actividad = this.actividadesDelDia[this.actividadActual];
   }
 
   confirmarActividad() {
     console.log('Confirmada');
   }
 
-  editarActividad() {
-    console.log('editar actividad');
+  editarActividad(id: number) {
+    this.router.navigate(['/edit-actividad', id]);
   }
 
   eliminarActividad() {
-    if (this.actividades.length === 0) return;
+    const actividadAEliminar = this.actividadesDelDia[this.actividadActual];
 
-    // Eliminar la actividad actual directamente (sin confirm)
-    this.actividades.splice(this.actividadActual, 1);
-
-    // Ajustar el índice actual si es necesario
-    if (this.actividadActual >= this.actividades.length) {
-      this.actividadActual = Math.max(0, this.actividades.length - 1);
-    }
+    this.actividades = this.actividades.filter(
+      act => act !== actividadAEliminar
+    );
 
     // Guardar en localStorage
     localStorage.setItem('actividades', JSON.stringify(this.actividades));
+
+    // Volver a filtrar actividades del día actual
+    this.actividadesDelDia = this.actividades.filter(
+      act => act.fechaISO === this.fechaSeleccionada
+    );
+
+    if (this.actividadesDelDia.length > 0) {
+      this.actividadActual = 0;
+      this.actividad = this.actividadesDelDia[0];
+    } else {
+      this.actividad = null;
+    }
 
     console.log('Actividad eliminada');
   }
 
   async confirmarEliminacionActividad() {
+    if (!this.actividades || this.actividades.length === 0) {
+      console.warn('No hay actividades para eliminar');
+      return;
+    }
+
     const actividad = this.actividades[this.actividadActual];
+
+    if (!actividad) {
+      console.warn('Índice fuera de rango o actividad no definida');
+      return;
+    }
 
     const alert = await this.alertCtrl.create({
       header: 'Eliminar actividad',
@@ -133,7 +189,13 @@ export class CalendarioPage {
   }
 
   agregarActividad() {
-    console.log('Agregar nueva actividad');
+    if (!this.fechaSeleccionada) return;
+    localStorage.setItem('fechaSeleccionada', this.fechaSeleccionada);
     this.router.navigate(['/edit-control']);
+  }
+
+  actualizarCalendario() {
+    this.cargarActividades(); // Recargamos las actividades
+    this.cdr.detectChanges();  // Forzamos la actualización de la vista
   }
 }

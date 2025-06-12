@@ -33,6 +33,10 @@ export class EditControlPage implements OnInit {
   errorFormulario: string = '';
 
   ngOnInit() {
+    const fechaISO = localStorage.getItem('fechaSeleccionada');
+    if (fechaISO) {
+      this.form.fecha = fechaISO;  
+    }
   }
 
   async guardar() {
@@ -54,16 +58,19 @@ export class EditControlPage implements OnInit {
       ubicacion: this.form.ubicacion,
       mensaje: this.form.mensaje,
       recordatorio: this.form.recordatorio,
-      diasAntes: this.form.diasAntes
+      diasAntes: this.form.diasAntes,
+      fechaISO: this.form.fecha,
     };
   
     let actividades = JSON.parse(localStorage.getItem('actividades') || '[]');
     actividades.push(nuevaActividad);
     localStorage.setItem('actividades', JSON.stringify(actividades));
   
-    await this.mensajeGuardado(); // ✅ Mostrar mensaje al guardar correctamente
+    await this.mensajeGuardado();
+    
   
-    this.router.navigate(['/tab/calendario']);
+    // Navegar de vuelta al calendario
+    this.router.navigateByUrl('/tab/calendario', { replaceUrl: true });
   }
 
   cancelar(){

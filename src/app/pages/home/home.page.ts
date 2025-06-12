@@ -38,15 +38,24 @@ export class HomePage implements OnInit {
 
   calcularEdad(fechaNacimiento: string): string {
     const fechaNac = new Date(fechaNacimiento);
+
+    // Verificamos que la fecha sea válida
+    if (isNaN(fechaNac.getTime())) {
+      console.error('Fecha de nacimiento inválida:', fechaNacimiento);
+      return 'Edad desconocida';
+    }
+
     const hoy = new Date();
     let años = hoy.getFullYear() - fechaNac.getFullYear();
     let meses = hoy.getMonth() - fechaNac.getMonth();
+
 
     if (meses < 0) {
       años--;
       meses += 12;
     }
 
+    // Aseguramos que devuelva el formato correcto
     return `${años} año${años !== 1 ? 's' : ''} y ${meses} mes${meses !== 1 ? 'es' : ''}`;
   }
 

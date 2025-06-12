@@ -87,6 +87,10 @@ export const routes: Routes = [
     path: 'contactos',
     loadComponent: () => import('./pages/contactos/contactos.page').then( m => m.ContactosPage)
   },
+  {
+    path: 'edit-actividad/:id',
+    loadComponent: () => import('./pages/edit-actividad/edit-actividad.page').then( m => m.EditActividadPage)
+  },
 
 
 

@@ -41,10 +41,10 @@ export class PerfilPage implements OnInit {
   }
 
   seleccionarPerfil(perfil: any) {
-    // Si hay que guardar el perfil seleccionado:
+    // Guardamos el perfil seleccionado en localStorage
     localStorage.setItem('perfilSeleccionado', JSON.stringify(perfil));
   
-    // Redirigir a la página de home
+    // Navegamos a la página de inicio
     this.router.navigate(['/tab/inicio']);
   }
 }
