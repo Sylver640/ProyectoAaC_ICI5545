@@ -217,4 +217,69 @@ Esta debería ser la respuesta en caso de tener un status 200:
 }
 ```
 
-## SUGERENCIA/CONSEJOS EN CONSTRUCCIÓN.......
+## SUGERENCIA/CONSEJOS
+
+### Listar todo el JSON de sugerencias
+Para listar todas las sugerencias, se tendra que realizar un request de tipo ```GET``` para el siguiente endpoint.
+```shell
+http://135.232.120.200:8080/v1/sugerencias/listar
+```
+
+Tener en cuenta que este endpoint **NO** requiere ningún input de entrada.
+Esta debería ser la respuesta en caso de tener un status 200:
+
+```shell
+{
+    "status": 200,
+    "sugerencias": {
+        "sugerencia": {}
+    }
+}
+```
+
+### Filtrar por edad y categoria
+Para obtener las sugerencias por edad y categoria, se tendra que realizar un request de tipo ```POST``` para el siguiente endpoint.
+```shell
+http://135.232.120.200:8080/v1/sugerencias/por_edad_categoria
+```
+
+Tener en cuenta que este endpoint **SÍ** requiere un input de entrada, donde se debe entregar la ```edad``` y ```categoria``` del infante.
+
+Ejemplo
+```shell
+{
+    "edad": "0-6 meses",
+    "categoria": "Consejo de alimentacion"
+}
+```
+
+Esta debería ser la respuesta en caso de tener un status 200:
+```shell
+{
+    "consejo": [],
+    "status": 200
+}
+```
+
+### Filtrar solo por edad
+Para obtener las sugerencias por edad, se tendra que realizar un request de tipo ```POST``` para el siguiente endpoint.
+```
+http://135.232.120.200:8080/v1/sugerencias/por_edad
+```
+
+Tener en cuenta que este endpoint **SÍ** requiere un input de entrada, donde se debe entregar la ```edad``` del infante.
+
+Ejemplo
+```shell
+{
+    "edad": "0-6 meses"
+}
+```
+
+Esta debería ser la respuesta en caso de tener un status 200:
+```shell
+{
+    "consejos": [],
+    "status": 200
+}
+```
