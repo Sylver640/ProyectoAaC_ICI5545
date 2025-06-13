@@ -20,6 +20,7 @@ export class TarjetaConsejoComponent implements OnInit {
   private _contenido = '';
   private _imgUrl = 'https://ionicframework.com/docs/img/demos/thumbnail.svg';
   private _color = 'primary';
+  private _dynamicSize = false;
 
   @Input() set titulo(val: string) {
     this._titulo = val || 'Título por defecto';
@@ -56,6 +57,13 @@ export class TarjetaConsejoComponent implements OnInit {
     return this._color;
   }
 
+  @Input () set dynamicSize(val: boolean) {
+    this._dynamicSize = val || false;
+  }
+  get dynamicSize() {
+    return this._dynamicSize;
+  }
+  
   constructor(private router: Router) {
   }
   ngOnInit() {}

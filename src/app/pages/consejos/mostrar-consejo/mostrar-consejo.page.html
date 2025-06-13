@@ -9,10 +9,8 @@
     <div>
        <ion-list>
           <app-tarjeta-consejo *ngFor="let consejo of data"
-            [titulo]="consejo.titulo"
-            [subtitulo]="consejo.contenido"
-            [color]="consejo.color"
-            (click)="openModal(consejo)"
+            [titulo]="consejo"
+            [dynamicSize]="true"
           ></app-tarjeta-consejo>
       </ion-list>
     </div>

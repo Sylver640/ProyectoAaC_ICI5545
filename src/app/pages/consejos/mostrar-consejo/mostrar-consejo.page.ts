@@ -21,7 +21,9 @@ import { IonContent, IonList, IonHeader, IonTitle, IonToolbar } from '@ionic/ang
 export class MostrarConsejoPage implements OnInit {
 
   consejo: any
-  data: any;
+  data: string[] = [];
+  perfil: any = [];
+  rangoEdad: string = '0-6 meses';
   private currentModal: HTMLIonModalElement | null = null;
 
   constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService, private consejoservice: ConsejosService, private modalCtrl: ModalController) { }
@@ -47,7 +49,6 @@ export class MostrarConsejoPage implements OnInit {
     await this.currentModal.present();
     return this.currentModal;
   }
-
   async closeModal() {
     if (this.currentModal) {
       await this.currentModal.dismiss();
@@ -56,47 +57,87 @@ export class MostrarConsejoPage implements OnInit {
     }
   }
 
+  obtenerRangoEdad(fechaNacimiento: string): string {
+    if (!fechaNacimiento) return '';
+
+    const nacimiento = new Date(fechaNacimiento);
+    const hoy = new Date();
+
+    let años = hoy.getFullYear() - nacimiento.getFullYear();
+    let meses = hoy.getMonth() - nacimiento.getMonth();
+
+    if (meses < 0) {
+      años--;
+      meses += 12;
+    }
+
+    const totalMeses = años * 12 + meses;
+
+    if (totalMeses <= 6) {
+      return "0-6 meses";
+    } else if (totalMeses <= 12) {
+      return "7-12 meses";
+    } else if (totalMeses <= 23) {
+      return "13-23 meses";
+    } else if (totalMeses <= 60) {
+      return "2-5 años";
+    } else if (totalMeses <= 120) {
+      return "6-10 años";
+    } else {
+      return "Fuera de rango";
+    }
+  }
+
+  cargarPerfil() {
+    const data = localStorage.getItem('perfilSeleccionado');
+    this.perfil = data ? JSON.parse(data) : [];
+    this.rangoEdad = this.obtenerRangoEdad(this.perfil.fechaNacimiento);
+  }
+
+
+
   ngOnInit() {
+
     const index = this.route.snapshot.paramMap.get('id');
     // Aquí puedes obtener el consejo usando el índice, por ejemplo desde un servicio o localStorage
     // this.consejo = ...;
-    this.data = this.consejoservice.getConsejos(index);
-    console.log(this.sugerenciaservice.listarConsejos());
+    this.cargarPerfil();
+
     switch (index) {
       case 'alimentacion':
         this.consejo = {
           titulo: 'Consejos de alimentación',
-          type: 'alimentacion',
+          type: 'Consejo de alimentacion',
         };
         break;
       case 'descanso':
         this.consejo = {
           titulo: 'Consejos de sueño y descanso',
-          type: 'descanso',
+          type: 'Consejo de reposo y sueño',
         };
         break;
       case 'estimulación':
         this.consejo = {
           titulo: 'Consejos de estimulación del desarrollo',
-          type: 'estimulación',
+          type: 'Consejos de estimulacion del desarrollo',
         };
         break;
       case 'prevencion':
         this.consejo = {
           titulo: 'Consejos de alerta y prevención de accidentes',
-          type: 'prevencion',
+          type: 'Consejos de alerta y prevencion de accidentes',
         };
         break;
       case 'bienestar':
         this.consejo = {
           titulo: 'Consejos de bienestar',
-          type: 'bienestar',
+          type: 'Consejos de bienestar emocional',
         };
         break;
       case 'cuidados':
         this.consejo = {
           titulo: 'Consejos de cuidados generales',
-          type: 'cuidados',
+          type: 'general',
         };
         break;
       default:
@@ -106,5 +147,25 @@ export class MostrarConsejoPage implements OnInit {
           type: 'desconocido',
         };
     }
+
+    this.sugerenciaservice.listarConsejosPorEdadYCategoria(this.rangoEdad, this.consejo.type)
+    .subscribe({
+      next: (respuesta) => {
+        // respuesta es de tipo SugerenciaResponse
+        // array de consejos
+        // status (200)
+        // Puedes guardar los consejos en una variable de tu componente
+        this.data = respuesta.consejos as string[];
+        console.log(typeof (respuesta.consejos as string[]));
+        console.log(this.data)
+      },
+      error: (err) => {
+        console.error('Error:', err);
+      }
+    });
+
+
+
+
   }
 }

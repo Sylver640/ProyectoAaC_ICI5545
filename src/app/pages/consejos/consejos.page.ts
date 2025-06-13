@@ -71,6 +71,7 @@ export class ConsejosPage implements OnInit {
     }
   ];
 
+
  constructor(private router: Router) {}
 
   calcularEdad(fechaNacimiento: string): string {
@@ -103,7 +104,6 @@ export class ConsejosPage implements OnInit {
 
   ngOnInit() {
     this.cargarPerfil();
-    console.log('Perfil cargado:', this.perfil);
   }
 
 }
