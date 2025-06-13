@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SugerenciasService {
-  private apiUrl = '/v1/sugerencias';
+  private apiUrl = '135.232.120.200:8080/v1/sugerencias';
 
   constructor(private http: HttpClient) { }
 
