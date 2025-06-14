@@ -33,8 +33,8 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/calendario/calendario.page').then(m => m.CalendarioPage),
       },
       {
-        path: 'sucursales',
-        loadComponent: () => import('./pages/sucursales/sucursales.page').then((m) => m.SucursalesPage),
+        path: 'red-salud',
+        loadComponent: () => import('./pages/red-salud/red-salud.page').then( m => m.RedSaludPage),
       },
     ],
   },
@@ -58,10 +58,6 @@ export const routes: Routes = [
   {
     path: 'calendario',
     loadComponent: () => import('./pages/calendario/calendario.page').then(m => m.CalendarioPage),
-  },
-  {
-    path: 'sucursales',
-    loadComponent: () => import('./pages/sucursales/sucursales.page').then(m => m.SucursalesPage),
   },
   {
     path: 'mostrar-consejo',
@@ -91,6 +87,11 @@ export const routes: Routes = [
     path: 'edit-actividad/:id',
     loadComponent: () => import('./pages/edit-actividad/edit-actividad.page').then( m => m.EditActividadPage)
   },
+  {
+    path: 'red-salud',
+    loadComponent: () => import('./pages/red-salud/red-salud.page').then( m => m.RedSaludPage)
+  },
+
 
 
 

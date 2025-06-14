@@ -26,7 +26,7 @@ export class MostrarConsejoPage implements OnInit {
   rangoEdad: string = '0-6 meses';
   private currentModal: HTMLIonModalElement | null = null;
 
-  constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService, private consejoservice: ConsejosService, private modalCtrl: ModalController) { }
+  constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService, private modalCtrl: ModalController) { }
 
   async openModal(consejo: any) {
     if (this.currentModal) {
@@ -163,9 +163,6 @@ export class MostrarConsejoPage implements OnInit {
         console.error('Error:', err);
       }
     });
-
-
-
 
   }
 }
