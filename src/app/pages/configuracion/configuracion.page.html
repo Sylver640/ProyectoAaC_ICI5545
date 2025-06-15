@@ -1,44 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button fill="clear" (click)="volver()">
-        <img src="assets/icon/arrow_back.png" alt="Volver" style="width: 24px; height: 24px;" />
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Configuración</ion-title>
+    <div class="container"></div>
+    <div class="container-flex">
+      <ion-buttons slot="start">
+        <ion-button fill="clear" (click)="volver()">
+          <img src="assets/icon/arrow_back.png" alt="Volver" style="width: 24px; height: 24px;" />
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Configuración</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list *ngIf="perfiles.length > 0; else sinPerfiles">
 
-    <ion-item *ngFor="let perfil of perfiles">
-      <ion-avatar slot="start">
-        <img src="assets/icon/default_avatar.png">
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ perfil.nombre }}</h2>
-        <p>Fecha de nacimiento: {{ perfil.fechaNacimiento | date:'yyyy-MM-dd' }}</p>
-      </ion-label>
+  <div *ngIf="perfiles.length > 0; else sinPerfiles">
+    <div class="perfil-card" *ngFor="let perfil of perfiles">
+      <div class="perfil-info">
+        <div class="perfil-header">
+          <h2>{{ perfil.nombre }}</h2>
 
-      <div class="perfil-container" (click)="editarPerfil(perfil)">
-        <ion-avatar>
-          <img src="assets/icon/Edit.png" class="icon-button-img">
-        </ion-avatar>
+          <div class="icon-actions">
+            <button (click)="editarPerfil(perfil)" class="icon-button" fill="clear">
+              <img src="assets/icon/Edit.png" alt="Editar">
+            </button>
+
+            <ion-button (click)="presentarHtmlConfirmacion(perfil)" class="icon-button" fill="clear">
+              <img src="assets/icon/delete.png" alt="Eliminar">
+            </ion-button>
+          </div>
+        </div>
+        <p class="fecha-nacimiento">Fecha de nacimiento: {{ perfil.fechaNacimiento | date:'yyyy-MM-dd' }}</p>
       </div>
-
-      <div class="perfil-container" (click)="confirmarEliminacion(perfil)">
-    <ion-avatar>
-      <img src="assets/icon/delete.png" class="icon-button-img">
-    </ion-avatar>
+    </div>
   </div>
-    </ion-item>
-
-  </ion-list>
 
   <ng-template #sinPerfiles>
     <div class="ion-text-center">
       <p>No hay perfiles guardados.</p>
     </div>
   </ng-template>
+
+  <div class="custom-popup-overlay" [class.show]="isHtmlPopupOpen">
+    <div class="custom-popup-content">
+      <h3>Confirmar eliminación</h3>
+      <p>¿Estás seguro de que deseas eliminar el perfil de "{{ perfilSeleccionado?.nombre }}"?</p>
+      <div class="popup-buttons">
+        <button class="popup-button cancel" (click)="cancelarHtmlEliminacion()">Cancelar</button>
+        <button class="popup-button confirm" (click)="confirmarHtmlEliminacion()">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
 </ion-content>

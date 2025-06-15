@@ -5,16 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-configuracion',
   templateUrl: './configuracion.page.html',
-  styleUrls: ['./configuracion.page.scss'],
-  imports: [IonicModule,CommonModule,FormsModule]
+  styleUrls: ['./configuracion.page.scss'], // Tus estilos irán aquí
+  imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ConfiguracionPage implements OnInit {
 
   perfiles: any[] = [];
+  isHtmlPopupOpen = false; // Nuevo estado para el pop-up HTML
+  perfilSeleccionado: any | null = null; // Para guardar el perfil que se va a eliminar
 
   constructor(private router: Router, private alertCtrl: AlertController) {}
 
@@ -23,7 +24,7 @@ export class ConfiguracionPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.cargarPerfiles(); // Se ejecuta cada vez que se entra a la vista
+    this.cargarPerfiles();
   }
 
   cargarPerfiles() {
@@ -39,27 +40,30 @@ export class ConfiguracionPage implements OnInit {
     this.router.navigate(['/perfil']);
   }
 
+  presentarHtmlConfirmacion(perfil: any) {
+    console.log('Abriendo pop-up HTML de confirmación para perfil:', perfil);
+    this.perfilSeleccionado = perfil;
+    this.isHtmlPopupOpen = true; // Abre el pop-up
+  }
+
+  cancelarHtmlEliminacion() {
+    console.log('Eliminación cancelada desde pop-up HTML.');
+    this.isHtmlPopupOpen = false; // Cierra el pop-up
+  }
+
+  confirmarHtmlEliminacion() {
+    if (this.perfilSeleccionado) {
+      console.log('Confirmando eliminación de perfil desde pop-up HTML:', this.perfilSeleccionado);
+      this.eliminarPerfil(this.perfilSeleccionado);
+      this.isHtmlPopupOpen = false;
+      this.perfilSeleccionado = null;
+    }
+  }
+
+  // **** TU FUNCIÓN ORIGINAL DE ELIMINAR PERFIL ****
   eliminarPerfil(perfil: any) {
     this.perfiles = this.perfiles.filter(p => p.id !== perfil.id);
     localStorage.setItem('perfiles', JSON.stringify(this.perfiles));
-  }
-
-  async confirmarEliminacion(perfil: any) {
-    const alert = await this.alertCtrl.create({
-      header: 'Confirmar eliminación',
-      message: `¿Estás seguro de que deseas eliminar el perfil de ${perfil.nombre}?`,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
-        {
-          text: 'Sí, eliminar',
-          handler: () => this.eliminarPerfil(perfil)
-        }
-      ]
-    });
-  
-    await alert.present();
+    console.log('Perfil eliminado:', perfil);
   }
 }

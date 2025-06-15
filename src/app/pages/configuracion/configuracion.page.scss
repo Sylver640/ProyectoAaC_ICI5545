@@ -1,4 +1,201 @@
+/* Estilos para el contenedor principal de la cabecera */
+.container {
+  padding: 2vh; /* Espacio superior, si aún lo necesitas */
+  background-color: white; /* Color de fondo, si lo deseas */
+}
+
+/* Estilos para el contenedor flexible de la cabecera (flecha + título) */
+.container-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Alinea verticalmente la flecha y el título */
+  gap: 8px; /* Espacio entre la fle flecha y el título */
+  width: 100%; /* Asegura que el contenedor flex ocupe todo el ancho disponible */
+}
+
+/* Estilos para el botón de la flecha dentro de ion-header */
+ion-buttons {
+  margin: 0;
+  padding: 0;
+  height: auto;
+}
+
+ion-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  min-width: unset;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* El padding que discutimos para aumentar el área táctil de la flecha */
+  padding: 8px;
+}
+
+ion-button img {
+  width: 24px; /* Ajustado al tamaño de tu imagen de flecha */
+  height: 24px; /* Ajustado al tamaño de tu imagen de flecha */
+}
+
+/* Estilos para el título "Configuración" */
+ion-title {
+  display: inline-block; /* Permite que el título esté en la misma línea que la flecha */
+  padding: 0;
+  margin: 0;
+  font-size: 18px; /* Tamaño de fuente, si lo deseas */
+  --padding-start: 0px; /* Elimina padding por defecto de Ionic */
+  --padding-end: 0px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  text-align: start;
+}
+
+/* ======================================================= */
+/* Estilos del POP-UP HTML/CSS NATIVO (Confirmación de eliminación) */
+/* ======================================================= */
+
+.custom-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Muy alto para asegurar que esté por encima */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.custom-popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  width: 90%;
+  text-align: center;
+}
+
+.custom-popup-content h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.custom-popup-content p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.popup-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.popup-button.cancel {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.popup-button.confirm {
+  background-color: #dc3545; /* Rojo para eliminar */
+  color: white;
+}
+
+/* ======================================================= */
+/* Estilos ORIGINALES de PERFIL (si aún los usas para mostrar la lista de perfiles) */
+/* ======================================================= */
+
+.perfil-card {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ion-color-medium);
+}
+
+.perfil-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.perfil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.perfil-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.fecha-nacimiento {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.icon-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .icon-button-img {
-    width: 30px;
-    height: 30px;
-  }
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-button img {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-actions ion-button { /* Asumiendo que son ion-button */
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  min-width: unset;
+  height: auto;
+  /* Esto ya lo tenías para la flecha, pero asegúrate que también aplique a estos */
+  padding: 8px; /* Aumenta el área de clic si los íconos son pequeños */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-actions ion-button img { /* Estilos para la imagen dentro de los botones de acción */
+  width: 24px; /* O el tamaño que uses para tus íconos de editar/eliminar */
+  height: 24px; /* O el tamaño que uses para tus íconos de editar/eliminar */
+}
