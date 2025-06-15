@@ -1,15 +1,18 @@
 .panel-superior {
   ion-header,
   ion-toolbar {
-    min-height: 110px; // O la altura que desees
-    height: 110px;
-    align-items: center;
-  }
-  ion-toolbar {
+    min-height: 110px;
+    max-height: none;
+    transition: max-height 0.2s;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     justify-content: center;
+    align-items: center;
+  }
+
+  ion-toolbar.titulo-largo {
+    max-height: none;
+    min-height: 110px;
   }
 
   ion-buttons[slot="end"] {

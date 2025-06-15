@@ -1,6 +1,6 @@
 <div class="panel-superior">
   <ion-header [translucent]="false">
-    <ion-toolbar>
+    <ion-toolbar [class.titulo-largo]="isTituloLargo">
       <ion-buttons slot="start" *ngIf="button">
         <ion-button>
           <ion-back-button *ngIf="!onBack" default-href="#" mode="md"></ion-back-button>
@@ -10,7 +10,7 @@
       <app-info-seccion
         [titulo]="titulo"
         [subtitulo]="subtitulo"
-        [padding]="button ? '0px 0px' : '0px 48px'">
+        [padding]="button ? '0px 0px' : '0px 16px'">
       </app-info-seccion>
       <ion-buttons slot="end">
         <ng-content></ng-content>

@@ -23,6 +23,7 @@ export class PanelSuperiorComponent  implements OnInit {
   private _titulo: string = 'Panel Superior';
   private _subtitulo: string = '';
   private _button: boolean = true;
+  private _isTituloLargo: boolean = false;
 
   @Input() onBack?: () => void;
 
@@ -45,6 +46,14 @@ export class PanelSuperiorComponent  implements OnInit {
   get button(): boolean {
     return this._button;
   }
+
+  @Input() set isTituloLargo(value: boolean) {
+    this._isTituloLargo = value;
+  }
+  get isTituloLargo(): boolean {
+    return this._isTituloLargo;
+  }
+
 
   constructor() { }
 

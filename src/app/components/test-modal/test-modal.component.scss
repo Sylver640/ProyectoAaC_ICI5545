@@ -1,9 +1,12 @@
 ::ng-deep .consejo-modal-panel-superior .titulo-info-seccion {
-  font-size: 1.3rem !important;
+  font-size: 1.2rem !important;
 }
 
+.consejo-modal-panel-superior {
+  padding: 16px 0px 0px 0px;
+}
 .consejo-modal-contenido-titulo {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 300;
   font-style: italic;
   text-align: justify;
