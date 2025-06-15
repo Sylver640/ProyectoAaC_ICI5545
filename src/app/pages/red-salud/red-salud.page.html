@@ -8,8 +8,11 @@
   <div>
     <div>
        <ion-list>
-          <app-tarjeta-consejo
-          ></app-tarjeta-consejo>
+          <app-tarjeta-centro *ngFor="let centro of centros"
+            [titulo]="centro.nombre"
+            [subtitulo]="centro.direccion"
+            [dynamicSize] = "true"
+          ></app-tarjeta-centro>
       </ion-list>
     </div>
   </div>

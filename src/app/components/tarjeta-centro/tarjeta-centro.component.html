@@ -1,3 +1,37 @@
-<p>
-  tarjeta-centro works!
-</p>
+<!-- Layout dinámico (más alto y flexible) -->
+<ion-card *ngIf="dynamicSize; else fijo" [color]="color" style="min-height: 120px; height: auto;">
+  <div class="tarjeta-contenido" style="display: flex; align-items: flex-start; width: 100%;">
+    <img
+      alt="Silhouette of mountains"
+      [src]="imgUrl"
+      style="margin: 16px 16px 0 16px; width: 48px; height: 48px;"
+    />
+    <div class="tarjeta-titulo"
+         style="flex: 1; padding: 16px 16px 16px 0; display: flex; flex-direction: column; justify-content: flex-start; min-height: 120px; height: auto;">
+      <ion-card-title *ngIf="titulo && titulo !== ''"
+        style="font-size:21px; white-space: normal; word-break: break-word;">
+        {{ titulo }}
+      </ion-card-title>
+      <ion-card-subtitle *ngIf="subtitulo && subtitulo !== ''">
+        {{subtitulo}}
+      </ion-card-subtitle>
+    </div>
+  </div>
+</ion-card>
+
+<!-- Layout fijo (como estaba antes) -->
+<ng-template #fijo>
+  <ion-card [color]="color" style="display: flex; align-content: center; height: 120px;">
+    <div class="tarjeta-contenido" style="display: flex; align-items: center;">
+      <img
+        alt="Silhouette of mountains"
+        [src]="imgUrl"
+        style="margin-right: 16px; margin-left: 16px; width: 64px; height: 64px;"
+      />
+      <div class="tarjeta-titulo" style="padding-right: 16px; height: 120px; align-content: center;">
+        <ion-card-title *ngIf="titulo && titulo !== ''" style="font-size:21px;">{{ titulo }}</ion-card-title>
+        <ion-card-subtitle *ngIf="subtitulo && subtitulo !== ''">{{subtitulo}}</ion-card-subtitle>
+      </div>
+    </div>
+  </ion-card>
+</ng-template>

@@ -1,10 +1,22 @@
 <app-panel-superior
-  [titulo]="consejo.titulo"
+  class="consejo-modal-panel-superior"
+  [titulo]="titulo"
+  [subtitulo]="subtitulo"
   [button]="false"
 >
   <ion-buttons slot="end">
     <ion-button (click)="closeModal()">Close</ion-button>
   </ion-buttons>
 </app-panel-superior>
+
+<ion-content [fullscreen]="true">
+  <div class="consejo-modal-contenido">
+     <span class="consejo-modal-contenido-titulo">
+      {{ contenido }}
+    </span>
+  </div>
+
+</ion-content>
+
 
 

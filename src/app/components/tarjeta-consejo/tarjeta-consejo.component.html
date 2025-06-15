@@ -1,15 +1,13 @@
 <!-- Layout dinámico (más alto y flexible) -->
-<ion-card *ngIf="dynamicSize; else fijo" [color]="color" style="min-height: 120px; height: auto;">
-  <div class="tarjeta-contenido" style="display: flex; align-items: flex-start; width: 100%;">
+<ion-card *ngIf="dynamicSize; else fijo" [color]="color" class="tarjeta-dinamica">
+  <div class="tarjeta-contenido">
     <img
       alt="Silhouette of mountains"
       [src]="imgUrl"
-      style="margin: 16px 16px 0 16px; width: 48px; height: 48px;"
+      class="tarjeta-img"
     />
-    <div class="tarjeta-titulo"
-         style="flex: 1; padding: 16px 16px 16px 0; display: flex; flex-direction: column; justify-content: flex-start; min-height: 120px; height: auto;">
-      <ion-card-title *ngIf="titulo && titulo !== ''"
-        style="font-size:21px; white-space: normal; word-break: break-word;">
+    <div class="tarjeta-titulo">
+      <ion-card-title *ngIf="titulo && titulo !== ''" class="titulo-ellipsis">
         {{ titulo }}
       </ion-card-title>
       <ion-card-subtitle *ngIf="subtitulo && subtitulo !== ''">
@@ -21,16 +19,20 @@
 
 <!-- Layout fijo (como estaba antes) -->
 <ng-template #fijo>
-  <ion-card [color]="color" style="display: flex; align-content: center; height: 120px;">
-    <div class="tarjeta-contenido" style="display: flex; align-items: center;">
+  <ion-card [color]="color" class="tarjeta-fija">
+    <div class="tarjeta-contenido-fija">
       <img
         alt="Silhouette of mountains"
         [src]="imgUrl"
-        style="margin-right: 16px; margin-left: 16px; width: 64px; height: 64px;"
+        class="tarjeta-img-fija"
       />
-      <div class="tarjeta-titulo" style="padding-right: 16px; height: 120px; align-content: center;">
-        <ion-card-title *ngIf="titulo && titulo !== ''" style="font-size:21px;">{{ titulo }}</ion-card-title>
-        <ion-card-subtitle *ngIf="subtitulo && subtitulo !== ''">{{subtitulo}}</ion-card-subtitle>
+      <div class="tarjeta-titulo-fija">
+        <ion-card-title *ngIf="titulo && titulo !== ''" class="titulo-ellipsis">
+          {{ titulo }}
+        </ion-card-title>
+        <ion-card-subtitle *ngIf="subtitulo && subtitulo !== ''">
+          {{subtitulo}}
+        </ion-card-subtitle>
       </div>
     </div>
   </ion-card>

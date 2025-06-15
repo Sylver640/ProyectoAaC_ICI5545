@@ -25,8 +25,8 @@ export interface Centro {
 // Esta parte es para definir el servicio de centros (servicio de centros)
 export class CentrosService {
   // Esta parte es para definir la URL de la API (URL de la API)
-  private apiUrl = '/v1/centros_de_salud';
-  
+  private apiUrl = 'http://135.232.120.200:8080/v1/centros_de_salud';
+
   // Esta parte es para definir el constructor del cliente HTTP (constructor HTTPClient)
   constructor(private http: HttpClient) { }
 

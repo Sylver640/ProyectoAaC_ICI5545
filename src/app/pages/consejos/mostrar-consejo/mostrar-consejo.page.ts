@@ -28,7 +28,7 @@ export class MostrarConsejoPage implements OnInit {
 
   constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService, private modalCtrl: ModalController) { }
 
-  async openModal(consejo: any) {
+  async openModal(titulo: string, rango: string, contenido: string) {
     if (this.currentModal) {
       await this.currentModal.dismiss();
       this.currentModal = null;
@@ -37,9 +37,12 @@ export class MostrarConsejoPage implements OnInit {
     this.currentModal = await this.modalCtrl.create({
       component: TestModalComponent,
       componentProps: {
-        consejo: consejo,
+        titulo: titulo,
+        subtitulo: rango,
+        contenido: contenido,
       },
-      breakpoints: [0, 0.5, 0.8],
+      breakpoints: [0, 0.5, 1],
+      initialBreakpoint: 0.5,
     });
 
     this.currentModal.onDidDismiss().then(() => {
@@ -49,6 +52,7 @@ export class MostrarConsejoPage implements OnInit {
     await this.currentModal.present();
     return this.currentModal;
   }
+
   async closeModal() {
     if (this.currentModal) {
       await this.currentModal.dismiss();
@@ -94,8 +98,6 @@ export class MostrarConsejoPage implements OnInit {
     this.rangoEdad = this.obtenerRangoEdad(this.perfil.fechaNacimiento);
   }
 
-
-
   ngOnInit() {
 
     const index = this.route.snapshot.paramMap.get('id');
@@ -108,36 +110,42 @@ export class MostrarConsejoPage implements OnInit {
         this.consejo = {
           titulo: 'Consejos de alimentación',
           type: 'Consejo de alimentacion',
+          color: 'alimentos', // <--- nombre corto
         };
         break;
       case 'descanso':
         this.consejo = {
           titulo: 'Consejos de sueño y descanso',
           type: 'Consejo de reposo y sueño',
+          color: 'descanso',
         };
         break;
       case 'estimulación':
         this.consejo = {
           titulo: 'Consejos de estimulación del desarrollo',
           type: 'Consejos de estimulacion del desarrollo',
+          color: 'estimulacion',
         };
         break;
       case 'prevencion':
         this.consejo = {
           titulo: 'Consejos de alerta y prevención de accidentes',
           type: 'Consejos de alerta y prevencion de accidentes',
+          color: 'prevencion',
         };
         break;
       case 'bienestar':
         this.consejo = {
           titulo: 'Consejos de bienestar',
           type: 'Consejos de bienestar emocional',
+          color: 'emocional',
         };
         break;
       case 'cuidados':
         this.consejo = {
           titulo: 'Consejos de cuidados generales',
           type: 'general',
+          color: 'cuidados',
         };
         break;
       default:
@@ -145,6 +153,7 @@ export class MostrarConsejoPage implements OnInit {
           titulo: 'Consejo no encontrado',
           contenido: '',
           type: 'desconocido',
+          color: 'medium',
         };
     }
 

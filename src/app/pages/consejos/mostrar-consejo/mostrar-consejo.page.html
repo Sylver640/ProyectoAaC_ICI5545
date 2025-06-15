@@ -8,9 +8,11 @@
   <div>
     <div>
        <ion-list>
-          <app-tarjeta-consejo *ngFor="let consejo of data"
-            [titulo]="consejo"
-            [dynamicSize]="true"
+          <app-tarjeta-consejo *ngFor="let aux of data"
+            [titulo]="aux"
+            [dynamicSize]="false"
+            [color]="consejo.color"
+            (click)="openModal(consejo.titulo, rangoEdad, aux)"
           ></app-tarjeta-consejo>
       </ion-list>
     </div>
