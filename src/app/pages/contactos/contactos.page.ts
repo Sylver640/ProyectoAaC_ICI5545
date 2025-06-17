@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon } from '@ionic/angular/standalone';
+import { IonContent} from '@ionic/angular/standalone';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-
   templateUrl: './contactos.page.html',
   styleUrls: ['./contactos.page.scss'],
   standalone: true,
-  imports: [IonIcon,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, PanelSuperiorComponent]
+  imports: [IonContent, CommonModule, FormsModule, PanelSuperiorComponent]
 })
 
 export class ContactosPage implements OnInit {

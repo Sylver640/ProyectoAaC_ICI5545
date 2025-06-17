@@ -2,20 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { ConsejosService } from 'src/app/services/consejos.service';
 import { SugerenciasService } from 'src/app/services/sugerencias.service';
 import { ActivatedRoute } from '@angular/router';
 import { TestModalComponent } from 'src/app/components/test-modal/test-modal.component';
 import { TarjetaConsejoComponent } from 'src/app/components/tarjeta-consejo/tarjeta-consejo.component';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
-import { IonContent, IonList, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonList } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-mostrar-consejo',
   templateUrl: './mostrar-consejo.page.html',
   styleUrls: ['./mostrar-consejo.page.scss'],
   standalone: true,
-  imports: [ TestModalComponent,TarjetaConsejoComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, PanelSuperiorComponent, IonList],
+  imports: [ TarjetaConsejoComponent, IonContent, CommonModule, FormsModule, PanelSuperiorComponent, IonList],
   providers: [ModalController],
 })
 export class MostrarConsejoPage implements OnInit {

@@ -1,13 +1,13 @@
-import { Component,importProvidersFrom,OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonContent } from '@ionic/angular/standalone';
 import { PanelSuperiorComponent} from 'src/app/components/panel-superior/panel-superior.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, PanelSuperiorComponent],
+  imports: [IonContent, PanelSuperiorComponent],
   standalone: true
 })
 

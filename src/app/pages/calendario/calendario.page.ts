@@ -6,19 +6,11 @@ import { Router } from '@angular/router';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonFooter,
-  IonTabBar,
-  IonTabButton,
-  IonIcon,
   IonDatetime,
-  IonLabel
 } from '@ionic/angular/standalone';
 
 
@@ -32,19 +24,11 @@ import {
     CommonModule,
     FormsModule,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     IonCard,
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonFooter,
-    IonTabBar,
-    IonIcon,
     IonDatetime,
-    IonTabButton,
-    IonLabel,
     PanelSuperiorComponent
   ]
 })

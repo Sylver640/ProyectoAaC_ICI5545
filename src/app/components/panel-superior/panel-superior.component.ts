@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoSeccionComponent } from '../info-seccion/info-seccion.component';
-import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton, IonIcon } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-panel-superior',
@@ -15,7 +15,6 @@ import { IonHeader, IonToolbar, IonButtons, IonButton, IonBackButton, IonIcon } 
     IonButton,
     IonBackButton,
     CommonModule,
-    IonIcon
   ]
 })
 export class PanelSuperiorComponent  implements OnInit {
