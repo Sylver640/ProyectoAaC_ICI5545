@@ -40,6 +40,9 @@ ion-content {
 .input-group {
   margin-bottom: 24px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .input-item {
@@ -74,7 +77,12 @@ ion-content {
   }
 }
 
-.custom-datetime,
+.custom-datetime {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 .custom-select {
   --padding-start: 0;
   --padding-end: 0;

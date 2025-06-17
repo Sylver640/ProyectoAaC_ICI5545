@@ -1,7 +1,7 @@
 <!-- HTML Template -->
 <ion-content class="ion-padding">
   <div class="content-container">
-    
+
     <!-- Avatar Section -->
     <div class="avatar-section">
       <img src="assets/icon/default_avatar.png" alt="Avatar" class="avatar-image">
@@ -14,17 +14,17 @@
         <!-- Nombre y apellido -->
         <div class="input-wrapper">
           <label class="input-label"><b>Nombre y apellido</b></label>
-          <input 
-            type="text" 
-            [(ngModel)]="formData.nombre" 
+          <input
+            type="text"
+            [(ngModel)]="formData.nombre"
             placeholder="Nombre y apellido"
             class="custom-input">
         </div>
 
         <!-- Date Input -->
         <div class="input-group">
+          <label class="input-label"><b>fecha de nacimiento</b></label>
           <ion-item lines="none" class="input-item">
-            <ion-label position="stacked">Fecha de nacimiento</ion-label>
             <ion-datetime
               presentation="date"
               [(ngModel)]="formData.fechaNacimiento"
@@ -52,16 +52,16 @@
 
         <!-- Buttons -->
         <div class="button-container">
-          <ion-button 
-            color="medium" 
-            expand="block" 
+          <ion-button
+            color="medium"
+            expand="block"
             (click)="onCancel()"
             class="action-button">
             Cancelar
           </ion-button>
-          <ion-button 
-            color="dark" 
-            expand="block" 
+          <ion-button
+            color="dark"
+            expand="block"
             (click)="onSave()"
             class="action-button">
             Guardar

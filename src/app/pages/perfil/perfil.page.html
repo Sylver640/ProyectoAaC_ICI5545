@@ -1,22 +1,24 @@
 <ion-content class="ion-padding">
-  <div class="perfil-scroll-container">
-    <div class="perfil-row">
-      <!-- Perfiles existentes -->
-      <div class="perfil-container" *ngFor="let perfil of perfiles" (click)="seleccionarPerfil(perfil)">
-        <ion-avatar>
-          <img src="assets/icon/default_avatar.png">
-        </ion-avatar>
-        <div class="perfil-nombre">{{ perfil.nombre }}</div>
-      </div>
+  <div class ="perfil-row-container">
+    <div class="perfil-scroll-container">
+      <div class="perfil-row">
+        <!-- Perfiles existentes -->
+        <div class="perfil-container" *ngFor="let perfil of perfiles" (click)="seleccionarPerfil(perfil)">
+          <ion-avatar>
+            <img src="assets/icon/default_avatar.png">
+          </ion-avatar>
+          <div class="perfil-nombre">{{ perfil.nombre }}</div>
+        </div>
 
-      <!-- Botón para añadir nuevo perfil -->
-      <div class="perfil-container add" (click)="addPerfil()">
-        <ion-avatar>
-          <img src="assets/icon/add_circle.png"/>
-        </ion-avatar>
-        <div class="perfil-nombre">Añadir niño/a</div>
-      </div>
+        <!-- Botón para añadir nuevo perfil -->
+        <div class="perfil-container add" (click)="addPerfil()">
+          <ion-avatar>
+            <img src="assets/icon/add_circle.png"/>
+          </ion-avatar>
+          <div class="perfil-nombre">Añadir niño/a</div>
+        </div>
 
+      </div>
     </div>
   </div>
 
