@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
+import { IonCard, IonIcon, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-tarjeta-centro',
@@ -11,18 +11,21 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle }
     IonCard,
     IonCardSubtitle,
     IonCardTitle,
-    CommonModule
+    CommonModule,
+    IonIcon
   ],
 })
 
 export class TarjetaCentroComponent  implements OnInit {
 
   private _titulo = 'Título por defecto';
-  private _subtitulo = '';
-  private _contenido = '';
   private _imgUrl = 'https://ionicframework.com/docs/img/demos/thumbnail.svg';
   private _color = 'primary';
   private _dynamicSize = false;
+
+  private _direccion = '';
+  private _horario = '';
+  private _telefono = '';
 
   @Input() set titulo(val: string) {
     this._titulo = val || 'Título por defecto';
@@ -31,19 +34,25 @@ export class TarjetaCentroComponent  implements OnInit {
     return this._titulo;
   }
 
-  @Input() set subtitulo(val: string) {
-    this._subtitulo = val || '';
+  @Input() set direccion(val: string) {
+    this._direccion = val || '';
   }
-  get subtitulo() {
-    return this._subtitulo;
+  get direccion() {
+    return this._direccion;
+  }
+  @Input() set horario(val: string) {
+    this._horario = val || '';
+  }
+  get horario() {
+    return this._horario;
+  }
+  @Input() set telefono(val: string) {
+    this._telefono = val || '';
+  }
+  get telefono() {
+    return this._telefono;
   }
 
-  @Input() set contenido(val: string) {
-    this._contenido = val || '';
-  }
-  get contenido() {
-    return this._contenido;
-  }
 
   @Input() set imgUrl(val: string) {
     this._imgUrl = val || 'https://ionicframework.com/docs/img/demos/thumbnail.svg';

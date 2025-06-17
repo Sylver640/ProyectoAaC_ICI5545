@@ -10,8 +10,10 @@
        <ion-list>
           <app-tarjeta-centro *ngFor="let centro of centros"
             [titulo]="centro.nombre"
-            [subtitulo]="centro.direccion"
-            [dynamicSize] = "true"
+            [direccion]="centro.direccion"
+            [horario]="centro.horario"
+            [telefono]="centro.telefono"
+            [dynamicSize]="true"
           ></app-tarjeta-centro>
       </ion-list>
     </div>

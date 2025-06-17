@@ -18,7 +18,7 @@ import { CentrosService } from 'src/app/services/centros.service';
     CommonModule,
     FormsModule,
     PanelSuperiorComponent,
-    TarjetaCentroComponent
+    TarjetaCentroComponent,
   ]
 })
 
@@ -31,6 +31,7 @@ export class RedSaludPage implements OnInit {
     this.centroService.obtenerCentros().subscribe({
       next: (respuesta) => {
         this.centros = respuesta;
+        console.log('Centros obtenidos:', this.centros);
       },
       error: (err) => {
         console.error('Error al obtener centros:', err);

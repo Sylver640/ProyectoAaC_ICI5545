@@ -1,0 +1,58 @@
+
+
+.tarjeta-contenido {
+  margin: 16px;
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  flex-direction: row;
+}
+
+.tarjeta-img {
+  margin: 16px;
+  width: 96px;
+  height: 96px;
+
+}
+
+.tarjeta-titulo {
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  flex-direction: column;
+  text-align: start;
+  cursor: pointer;
+}
+
+.centro-titulo-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.centro-direccion-text {
+  font-size: 1rem;
+  text-align: end;
+  margin-bottom: 0px;
+}
+
+.centro-horario-text {
+  font-size: 1rem;
+  margin-bottom: 0px;
+}
+
+.centro-horario-text2 {
+  font-size: 0.8rem;
+  margin-bottom: 0px;
+}
+
+.centro-telefono-text {
+  font-size: 1rem;
+  margin-bottom: 0px;
+}
+
+.centro-telefono-text2 {
+  font-size: 0.8rem;
+  margin-bottom: 0px;
+}
+
