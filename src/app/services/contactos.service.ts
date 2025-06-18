@@ -12,7 +12,7 @@ export interface Contacto {
   providedIn: 'root'
 })
 export class ContactosService {
-  private apiUrl = '/v1/contactos';
+  private apiUrl = 'http://135.232.120.200:8080/v1/contactos';
 
   constructor(private http: HttpClient) { }
 

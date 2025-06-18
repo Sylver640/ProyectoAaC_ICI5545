@@ -1,6 +1,6 @@
 .contactos-content {
     --background: linear-gradient(to bottom, #6b0e8a, #ec5e7a); // tu degradado
-  
+
     .contactos-container {
       display: flex;
       flex-direction: column;
@@ -8,31 +8,37 @@
       gap: 1.5rem;
       margin-top: 2rem;
     }
-  
+
     .contacto {
       display: flex;
       align-items: center;
       color: white;
     }
-  
+
     .icono {
       font-size: 2rem;
       margin-right: 1rem;
     }
-  
+
     .texto {
       display: flex;
       flex-direction: column;
     }
-  
+
     .nombre {
       font-weight: bold;
       font-size: 1.1rem;
       margin: 0;
     }
-  
+
     .numero {
       font-size: 1rem;
+      margin: 0;
+    }
+
+    .descripcion {
+      font-size: 0.9rem;
+      color: #f0f0f0;
       margin: 0;
     }
   }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonContent} from '@ionic/angular/standalone';
+import { ContactosService } from 'src/app/services/contactos.service';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
 
 @Component({
@@ -14,18 +15,28 @@ import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-
 })
 
 export class ContactosPage implements OnInit {
-  contactos = [
-    { nombre: 'Fono infancia', numero: '800 200 818' },
-    { nombre: 'Salud responde', numero: '600 360 7777' },
-    { nombre: 'Fono mujer y maternidad', numero: '800 520 100' },
-    { nombre: 'Fono niños', numero: '147' },
-    { nombre: 'Fono familia', numero: '149' },
-    { nombre: 'Ambulancia', numero: '131' },
-  ];
+  contactos: { nombre: string; numero: string; descripcion: string }[] = [];
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private contactoService: ContactosService){}
 
   ngOnInit() {
+    this.contactoService.obtenerContactos().subscribe({
+        next: (data) => {
+
+          this.contactos = data.map(contacto => ({
+            nombre: contacto.nombre,
+            numero: contacto.telefono,
+            descripcion: contacto.descripcion
+          }));
+
+          console.log('Contactos obtenidos:', this.contactos);
+
+        },
+        error: (err) => {
+          console.error('Error al obtener los contactos:', err);
+        }
+      }
+    );
   }
 
   goBack() {
