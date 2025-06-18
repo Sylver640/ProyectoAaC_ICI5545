@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { CalendarioServiceService } from 'src/app/services/calendario-service.service';
 
 // Definir una interfaz para las actividades
 interface Actividad {
@@ -50,7 +51,8 @@ export class EditActividadPage implements OnInit {
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
-    private activatedRoute: ActivatedRoute // Para obtener el parámetro de la ruta
+    private activatedRoute: ActivatedRoute, // Para obtener el parámetro de la ruta
+    private CalendarioServiceService: CalendarioServiceService
   ) {}
 
   ngOnInit() {
@@ -117,6 +119,8 @@ export class EditActividadPage implements OnInit {
 
       // Guardar las actividades actualizadas en localStorage
       localStorage.setItem('actividades', JSON.stringify(actividades));
+
+      this.CalendarioServiceService.emitirActualizacion();
 
       // Mostrar mensaje de éxito
       await this.mensajeGuardado();

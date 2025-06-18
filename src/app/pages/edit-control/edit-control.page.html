@@ -13,8 +13,11 @@
         <ion-label position="stacked">Fecha</ion-label>
         <ion-datetime
           presentation="date"
-          [(ngModel)]="form.fecha"
           locale="es-ES"
+          value="2025-06-18"
+          color="rose"
+          [isDateEnabled]="isWeekday"
+          [(ngModel)]="form.fecha"
           placeholder="Seleccione una fecha">
         </ion-datetime>
       </ion-item>
@@ -50,10 +53,10 @@
         <ion-grid>
           <ion-row class="ion-justify-content-center">
             <ion-col size="6">
-              <ion-button expand="block" color="medium" (click)="cancelar()">Cancelar</ion-button>
+              <ion-button expand="block" color="danger" (click)="cancelar()">Cancelar</ion-button>
             </ion-col>
             <ion-col size="6">
-              <ion-button expand="block" color="dark" (click)="guardar()">Guardar</ion-button>
+              <ion-button expand="block" color="success" (click)="guardar()">Guardar</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

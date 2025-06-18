@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { CalendarioServiceService } from 'src/app/services/calendario-service.service';
 
 
 @Component({
@@ -19,7 +20,16 @@ import { AlertController } from '@ionic/angular';
 })
 export class EditControlPage implements OnInit {
 
-  constructor(private router: Router,private alertCtrl: AlertController) {}
+  constructor(private router: Router,private alertCtrl: AlertController, private CalendarioServiceService:CalendarioServiceService ) {}
+
+  //Desactivar fin de semana
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
 
   form = {
     fecha: '',
@@ -65,9 +75,12 @@ export class EditControlPage implements OnInit {
     let actividades = JSON.parse(localStorage.getItem('actividades') || '[]');
     actividades.push(nuevaActividad);
     localStorage.setItem('actividades', JSON.stringify(actividades));
+
+    // Avisar al calendario que se actualice
+    this.CalendarioServiceService.emitirActualizacion();
   
     await this.mensajeGuardado();
-    
+  
   
     // Navegar de vuelta al calendario
     this.router.navigateByUrl('/tab/calendario', { replaceUrl: true });

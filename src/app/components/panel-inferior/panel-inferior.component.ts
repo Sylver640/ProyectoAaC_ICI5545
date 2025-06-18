@@ -3,7 +3,7 @@ import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standa
 import { Router } from '@angular/router';
 
 import { addIcons } from 'ionicons';
-import { library, playCircle, radio, search } from 'ionicons/icons';
+import { homeOutline, listOutline, calendarOutline, search } from 'ionicons/icons';
 
 @Component({
   selector: 'app-panel-inferior',
@@ -14,7 +14,7 @@ import { library, playCircle, radio, search } from 'ionicons/icons';
 export class PanelInferiorComponent  implements OnInit {
 
   constructor(private router: Router) {
-    addIcons({ library, playCircle, radio, search });
+    addIcons({ homeOutline, listOutline, calendarOutline, search });
 
   }
   onTabChange(event: any) {

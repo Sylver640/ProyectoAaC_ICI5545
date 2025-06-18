@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
+import { CalendarioServiceService } from 'src/app/services/calendario-service.service';
 import {
   IonContent,
   IonCard,
@@ -11,6 +12,9 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonDatetime,
+  IonRow,
+  IonCol,
+  IonGrid
 } from '@ionic/angular/standalone';
 
 
@@ -29,10 +33,23 @@ import {
     IonCardHeader,
     IonCardTitle,
     IonDatetime,
+    IonRow,
+    IonCol,
+    IonGrid,
     PanelSuperiorComponent
   ]
 })
 export class CalendarioPage {
+
+  //Desactivar fin de semana
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
+
   actividad: any = null;
 
 
@@ -41,17 +58,25 @@ export class CalendarioPage {
   actividadActual: number = 0;
   fechaSeleccionada: string = ''; // formato ISO
 
-  constructor (private router: Router,private alertCtrl: AlertController,private cdr: ChangeDetectorRef){}
+  constructor (private router: Router,private alertCtrl: AlertController,private cdr: ChangeDetectorRef, private CalendarioServiceService: CalendarioServiceService){}
 
   ngOnInit() {
-    this.cargarActividades();  // Recargar actividades cada vez que se acceda al calendario
+    this.cargarActividades();
+  
+    this.CalendarioServiceService.actualizarCalendario$.subscribe(() => {
+      this.actualizarCalendario();
+    });
   }
 
   ionViewWillEnter() {
-    // Recargar actividades cada vez que la página se muestra
     const datos = localStorage.getItem('actividades');
     this.actividades = datos ? JSON.parse(datos) : [];
-    console.log('Actividades recargadas:', this.actividades);
+  
+    const fechaGuardada = localStorage.getItem('fechaSeleccionada');
+    if (fechaGuardada) {
+      this.fechaSeleccionada = fechaGuardada;
+      this.onDateChange({ detail: { value: fechaGuardada } });
+    }
   }
 
   cargarActividades() {
