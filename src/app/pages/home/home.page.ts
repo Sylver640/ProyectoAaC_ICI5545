@@ -1,21 +1,26 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonContent } from '@ionic/angular/standalone';
+import { IonContent,IonCard,IonCardHeader,IonCardTitle,IonCardContent,IonText } from '@ionic/angular/standalone';
 import { PanelSuperiorComponent} from 'src/app/components/panel-superior/panel-superior.component';
+import { HitoService } from 'src/app/services/hitos.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonContent, PanelSuperiorComponent],
+  imports: [IonContent, PanelSuperiorComponent,IonCard,IonCardHeader,IonCardTitle,IonCardContent,CommonModule,IonText],
   standalone: true
 })
 
 export class HomePage implements OnInit {
   perfil: any = {};
   edadTexto: string = '';
+  rangoEdad: string = '';
+  hitos: string[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private hitoService: HitoService) {}
 
   ngOnInit() {
 
@@ -25,6 +30,42 @@ export class HomePage implements OnInit {
     } else {
       this.edadTexto = 'Fecha de nacimiento no disponible';
     }
+    const data = localStorage.getItem('perfilSeleccionado');
+    this.perfil = data ? JSON.parse(data) : {};
+    this.rangoEdad = this.obtenerRangoEdad(this.perfil.fechaNacimiento);
+    this.cargarHitos();
+  }
+
+  obtenerRangoEdad(fechaNacimiento: string): string {
+    if (!fechaNacimiento) return '';
+
+    const nacimiento = new Date(fechaNacimiento);
+    const hoy = new Date();
+    let años = hoy.getFullYear() - nacimiento.getFullYear();
+    let meses = hoy.getMonth() - nacimiento.getMonth();
+
+    if (meses < 0) {
+      años--;
+      meses += 12;
+    }
+
+    const totalMeses = años * 12 + meses;
+
+    if (totalMeses <= 6) return "0-6 meses";
+    if (totalMeses <= 12) return "7-12 meses";
+    if (totalMeses <= 23) return "13-23 meses";
+    if (totalMeses <= 60) return "2-5 años";
+    if (totalMeses <= 120) return "6-10 años";
+    return "Fuera de rango";
+  }
+
+  cargarHitos() {
+    if (this.rangoEdad === 'Fuera de rango') return;
+
+    this.hitoService.listarHitosPorEdad(this.rangoEdad).subscribe({
+      next: (data) => this.hitos = data,
+      error: (err) => console.error('Error al cargar hitos:', err)
+    });
   }
 
   cargarPerfil() {
