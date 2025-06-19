@@ -87,7 +87,7 @@ export class EditControlPage implements OnInit {
   
     this.CalendarioServiceService.emitirActualizacion();
   
-    await this.mensajeGuardado();
+    this.mensajeGuardado();
     this.router.navigateByUrl('/tab/calendario', { replaceUrl: true });
   }
 

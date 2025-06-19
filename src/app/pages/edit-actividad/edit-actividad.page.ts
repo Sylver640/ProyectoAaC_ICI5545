@@ -33,6 +33,7 @@ export class EditActividadPage implements OnInit {
 
   // Inicializamos actividadId como null o 0, ya que será asignado más tarde
   actividadId: number | null = null;
+  mostrarPopupExito: boolean = false;
 
   // Formulario de la actividad a editar
   form: Actividad = {
@@ -128,10 +129,7 @@ export class EditActividadPage implements OnInit {
       this.CalendarioServiceService.emitirActualizacion();
 
       // Mostrar mensaje de éxito
-      await this.mensajeGuardado();
-
-      // Redirigir al calendario
-      this.router.navigate(['/tab/calendario']);
+      this.mensajeGuardado();
     } else {
       this.errorFormulario = 'Actividad no encontrada.';
     }
@@ -142,19 +140,12 @@ export class EditActividadPage implements OnInit {
     this.router.navigate(['/tab/calendario']);
   }
 
-  async mensajeGuardado() {
-    // Crear y mostrar el mensaje de actividad guardada
-    const alert = await this.alertCtrl.create({
-      header: 'Actividad actualizada',
-      message: `Tu actividad ha sido actualizada con éxito!`,
-      buttons: [
-        {
-          text: 'Ok',
-        }
-      ]
-    });
-
-    await alert.present();
+  cerrarPopup() {
+    this.mostrarPopupExito = false;
+    this.router.navigate(['/tab/calendario']);
   }
 
+  mensajeGuardado() {
+    this.mostrarPopupExito = true;
+  }
 }

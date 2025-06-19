@@ -1,7 +1,6 @@
 import { Component, OnInit,ChangeDetectorRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
 import { CalendarioServiceService } from 'src/app/services/calendario-service.service';
@@ -16,8 +15,6 @@ import {
   IonCol,
   IonGrid
 } from '@ionic/angular/standalone';
-
-
 
 @Component({
   selector: 'app-calendario',
@@ -49,14 +46,14 @@ export class CalendarioPage {
     return utcDay !== 0 && utcDay !== 6;
   };
 
-
   actividad: any = null;
   actividades: any[] = [];
   actividadesDelDia: any[] = [];
   actividadActual: number = 0;
   fechaSeleccionada: string = ''; // formato ISO
+  mostrarConfirmacion: boolean = false;
 
-  constructor (private router: Router,private alertCtrl: AlertController,private cdr: ChangeDetectorRef, private CalendarioServiceService: CalendarioServiceService){}
+  constructor (private router: Router,private cdr: ChangeDetectorRef, private CalendarioServiceService: CalendarioServiceService){}
 
   ngOnInit() {
     this.cargarActividades();
@@ -160,39 +157,12 @@ export class CalendarioPage {
       this.actividad = null;
     }
 
+    this.mostrarConfirmacion = false; // Ocultar confirmación
     console.log('Actividad eliminada');
   }
 
   async confirmarEliminacionActividad() {
-    if (!this.actividades || this.actividades.length === 0) {
-      console.warn('No hay actividades para eliminar');
-      return;
-    }
-
-    const actividad = this.actividadesDelDia[this.actividadActual]
-
-
-    if (!actividad) {
-      console.warn('Índice fuera de rango o actividad no definida');
-      return;
-    }
-
-    const alert = await this.alertCtrl.create({
-      header: 'Eliminar actividad',
-      message: `¿Deseas eliminar la actividad "${actividad.titulo}"?`,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
-        {
-          text: 'Sí, eliminar',
-          handler: () => this.eliminarActividad()
-        }
-      ]
-    });
-
-    await alert.present();
+    this.mostrarConfirmacion = true;
   }
 
   agregarActividad() {
@@ -204,5 +174,9 @@ export class CalendarioPage {
   actualizarCalendario() {
     this.cargarActividades(); // Recargamos las actividades
     this.cdr.detectChanges();  // Forzamos la actualización de la vista
+  }
+
+  cancelarEliminacion() {
+    this.mostrarConfirmacion = false;
   }
 }
