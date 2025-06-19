@@ -91,19 +91,19 @@ export class CalendarioPage {
   }
 
   onDateChange(event: any) {
-    const fechaISO: string = event.detail.value?.split('T')[0]; // YYYY-MM-DD limpio
+    const fechaISO: string = event.detail.value?.split('T')[0];
   
     this.fechaSeleccionada = fechaISO;
   
-    // Comparación simple sin convertir a Date
     this.actividadesDelDia = this.actividades.filter(
-      act => act.fechaISO === fechaISO
+      act => act.fechaISO === this.fechaSeleccionada
     );
   
     if (this.actividadesDelDia.length > 0) {
       this.actividadActual = 0;
-      this.actividad = this.actividadesDelDia[0];
+      this.actividad = { ...this.actividadesDelDia[0] };
     } else {
+      this.actividadActual = -1;
       this.actividad = null;
     }
   
@@ -112,22 +112,22 @@ export class CalendarioPage {
   }
 
   prevActividad() {
-    if (this.actividadesDelDia.length === 0) return;
-
+    if (this.actividades.length === 0) return;
+  
     this.actividadActual =
-      (this.actividadActual - 1 + this.actividadesDelDia.length) %
-      this.actividadesDelDia.length;
-
-    this.actividad = this.actividadesDelDia[this.actividadActual];
+      (this.actividadActual - 1 + this.actividades.length) % this.actividades.length;
+  
+    this.actividad = this.actividades[this.actividadActual];
   }
+  
 
   nextActividad() {
-    if (this.actividadesDelDia.length === 0) return;
-
+    if (this.actividades.length === 0) return;
+  
     this.actividadActual =
-      (this.actividadActual + 1) % this.actividadesDelDia.length;
-
-    this.actividad = this.actividadesDelDia[this.actividadActual];
+      (this.actividadActual + 1) % this.actividades.length;
+  
+    this.actividad = this.actividades[this.actividadActual];
   }
 
   confirmarActividad() {
@@ -169,7 +169,8 @@ export class CalendarioPage {
       return;
     }
 
-    const actividad = this.actividades[this.actividadActual];
+    const actividad = this.actividadesDelDia[this.actividadActual]
+
 
     if (!actividad) {
       console.warn('Índice fuera de rango o actividad no definida');
@@ -178,7 +179,7 @@ export class CalendarioPage {
 
     const alert = await this.alertCtrl.create({
       header: 'Eliminar actividad',
-      message: `¿Deseas eliminar la actividad "${actividad.nombre}"?`,
+      message: `¿Deseas eliminar la actividad "${actividad.titulo}"?`,
       buttons: [
         {
           text: 'Cancelar',

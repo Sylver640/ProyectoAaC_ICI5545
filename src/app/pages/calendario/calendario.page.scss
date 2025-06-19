@@ -64,13 +64,21 @@
 
   /* Posicionando el pen_tool en la esquina inferior derecha */
   .edit-icon {
-    right: 10px; /* Esquina inferior derecha */
-    bottom: 10px; /* Ajusta la distancia desde la parte inferior */
+    right: 20px; /* Esquina inferior derecha */
+    bottom: 20px; /* Ajusta la distancia desde la parte inferior */
+    
   }
 
+  .icon-container {
+    display: flex;
+    justify-content: center; /* centra horizontalmente */
+    gap: 10px;               /* espacio entre iconos */
+    flex-wrap: wrap;         /* por si son muchos y no caben */
+  }
+  
   .trash-icon {
-    float: right;
-    font-size: 1.2rem;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
   }
 
@@ -103,8 +111,8 @@
 
   .arrow,
   .icon-button {
-    width: 24px;
-    height: 24px;
+    width: 34px;
+    height: 34px;
   }
 
   @media (min-width: 768px) {

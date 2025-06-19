@@ -44,11 +44,13 @@
 
               <!-- Botones y flechas solo si hay actividad -->
               <ng-container *ngIf="actividad">
-                <img src="assets/icon/arrow_left.png" class="arrow left-arrow" (click)="prevActividad()" />
-                <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
-                <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
-                <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
-                <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
+                <div class="icon-container">
+                  <img src="assets/icon/arrow_left.png" class="arrow left-arrow" (click)="prevActividad()" />
+                  <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
+                  <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
+                  <img src="assets/icon/delete.png" class="icon-button delete-icon trash-icon" (click)="confirmarEliminacionActividad()" />
+                  <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
+                </div>
               </ng-container>
             </ion-card>
         </ion-col>
