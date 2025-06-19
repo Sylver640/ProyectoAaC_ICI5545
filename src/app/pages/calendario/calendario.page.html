@@ -4,56 +4,58 @@
 </app-panel-superior>
 
 <ion-content class="ion-padding calendario-content">
-  <ion-card class="calendar-box">
-    <ion-card-content>
-      <ion-datetime
-        presentation="date"
-        locale="es-ES"
-        value="2025-08-11"
-        (ionChange)="onDateChange($event)"
-        class="custom-calendar">
-      </ion-datetime>
-    </ion-card-content>
-  </ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-sm="10" size-md="8" size-lg="6">
+          <ion-datetime
+            locale="es-ES"
+            value="2025-06-18"
+            color="rose"
+            [isDateEnabled]="isWeekday"
+            presentation="date"
+            (ionChange)="onDateChange($event)"
+            class="custom-calendar">
+          </ion-datetime>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
 
-  <ion-content class="ion-padding custom-calendar">
-    <!-- Aquí iría el calendario -->
-    <div class="calendar-container">
-      <!-- Tu calendario aquí (por ejemplo ion-datetime o similar) -->
-    </div>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-sm="10" size-md="8" size-lg="6">
+            <!-- Card con la actividad -->
+            <ion-card class="activity-card">
+              <ion-card-header>
+                <ion-card-title>
+                  Actividad
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content *ngIf="actividad">
+                <p><strong>Ubicación:</strong> {{ actividad.ubicacion }}</p>
+                <p><strong>Fecha:</strong> {{ actividad.fecha }}</p>
+                <p>{{ actividad.descripcion || actividad.mensaje }}</p>
+              </ion-card-content>
 
-    <!-- Card con la actividad -->
-    <ion-card class="activity-card">
-      <ion-card-header>
-        <ion-card-title>
-          Actividad
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content *ngIf="actividad">
-        <p><strong>Ubicación:</strong> {{ actividad.ubicacion }}</p>
-        <p><strong>Fecha:</strong> {{ actividad.fecha }}</p>
-        <p>{{ actividad.descripcion || actividad.mensaje }}</p>
-      </ion-card-content>
+              <ion-card-content *ngIf="!actividad">
+                <p>No hay actividad registrada para esta fecha.</p>
+              </ion-card-content>
 
-      <ion-card-content *ngIf="!actividad">
-        <p>No hay actividad registrada para esta fecha.</p>
-      </ion-card-content>
-
-      <!-- Botones y flechas solo si hay actividad -->
-      <ng-container *ngIf="actividad">
-        <img src="assets/icon/arrow_left.png" class="arrow left-arrow" (click)="prevActividad()" />
-        <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
-        <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
-        <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
-        <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
-      </ng-container>
-    </ion-card>
+              <!-- Botones y flechas solo si hay actividad -->
+              <ng-container *ngIf="actividad">
+                <img src="assets/icon/arrow_left.png" class="arrow left-arrow" (click)="prevActividad()" />
+                <img src="assets/icon/arrow_right.png" class="arrow right-arrow" (click)="nextActividad()" />
+                <img src="assets/icon/check_circle.png" class="icon-button check-icon" (click)="confirmarActividad()" />
+                <img src="assets/icon/delete.png" class="icon-button delete-icon" (click)="confirmarEliminacionActividad()" />
+                <img src="assets/icon/pen_tool.png" class="icon-button edit-icon" (click)="editarActividad(actividad.id)" />
+              </ng-container>
+            </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
     <!-- Botón agregar, solo si hay actividad -->
     <img *ngIf="fechaSeleccionada" src="assets/icon/add_circle.png" class="add-button" (click)="agregarActividad()" />
-
-  </ion-content>
-
-
 
 </ion-content>

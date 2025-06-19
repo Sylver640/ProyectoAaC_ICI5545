@@ -163,9 +163,7 @@ export class MostrarConsejoPage implements OnInit {
         // array de consejos
         // status (200)
         // Puedes guardar los consejos en una variable de tu componente
-        this.data = respuesta.consejos as string[];
-        console.log(typeof (respuesta.consejos as string[]));
-        console.log(this.data)
+        this.data = respuesta.consejos;
       },
       error: (err) => {
         console.error('Error:', err);
