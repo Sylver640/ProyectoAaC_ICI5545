@@ -39,7 +39,9 @@ export class EditControlPage implements OnInit {
     diasAntes: null,
   };
   
-  ubicaciones = ['Consultorio Central', 'Sucursal Norte', 'Sucursal Sur']; //Cambiar por localizaciones reales.
+  ubicaciones = ['CECOSF Juan Pablo II- Dependiente de CESFAM Rodelillo', 'Posta Laguna Verde', 'CESFAM Barón',
+    'CESFAM Esperanza', 'CESFAM Cordillera', 'CESFAM Quebrada Verde', 'SAPU Quebrada Verde', 'CESFAM Marcelo Mena'
+  ]; //Cambiar por localizaciones reales.
   errorFormulario: string = '';
 
   ngOnInit() {

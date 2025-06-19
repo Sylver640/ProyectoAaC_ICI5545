@@ -44,7 +44,9 @@ export class EditActividadPage implements OnInit {
   };
 
   // Lista de ubicaciones (puedes modificar esto según sea necesario)
-  ubicaciones = ['Consultorio Central', 'Sucursal Norte', 'Sucursal Sur'];
+  ubicaciones = ['CECOSF Juan Pablo II- Dependiente de CESFAM Rodelillo', 'Posta Laguna Verde', 'CESFAM Barón',
+    'CESFAM Esperanza', 'CESFAM Cordillera', 'CESFAM Quebrada Verde', 'SAPU Quebrada Verde', 'CESFAM Marcelo Mena'
+  ];
 
   errorFormulario: string = '';
 

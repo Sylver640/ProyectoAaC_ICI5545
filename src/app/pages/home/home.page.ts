@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   edadTexto: string = '';
   rangoEdad: string = '';
   hitos: string[] = [];
+  actividadProxima: any = null;
 
   constructor(private router: Router,private hitoService: HitoService) {}
 
@@ -34,6 +35,31 @@ export class HomePage implements OnInit {
     this.perfil = data ? JSON.parse(data) : {};
     this.rangoEdad = this.obtenerRangoEdad(this.perfil.fechaNacimiento);
     this.cargarHitos();
+    this.buscarActividadProxima();
+  }
+
+  formatFecha(fechaISO: string): string {
+    const fecha = new Date(fechaISO);
+    const dia = fecha.getDate();
+    const mes = fecha.toLocaleString('es-ES', { month: 'long' });
+    const año = fecha.getFullYear();
+    return `${dia} ${mes} ${año}`;
+  }
+
+  buscarActividadProxima() {
+    const datos = localStorage.getItem('actividades');
+    if (!datos) return;
+  
+    const actividades = JSON.parse(datos);
+  
+    const hoy = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  
+    // Ordenar por fecha futura más cercana
+    const proximas = actividades
+      .filter((a: any) => a.fechaISO >= hoy)
+      .sort((a: any, b: any) => a.fechaISO.localeCompare(b.fechaISO));
+  
+    this.actividadProxima = proximas.length > 0 ? proximas[0] : null;
   }
 
   obtenerRangoEdad(fechaNacimiento: string): string {

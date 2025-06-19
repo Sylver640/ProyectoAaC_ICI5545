@@ -15,7 +15,7 @@
     <ion-card-header class="custom-header">
       <div class="titulo-con-icono">
         <img src="assets/icon/Info.png" class="icono-info" />
-        <ion-card-title>Hitos del desarrollo</ion-card-title>
+        <ion-card-title class="titulo">Hitos del desarrollo</ion-card-title>
       </div>
       <ion-text color="medium" class="custom-subtitle">{{ rangoEdad }}</ion-text>
     </ion-card-header>
@@ -29,4 +29,17 @@
       </div>
     </ion-card-content>
   </ion-card>
+
+  <h2 class="proximaActividad">Próxima actividad</h2>
+  <ion-card *ngIf="actividadProxima" class="activity-card">
+    <ion-card-header>
+      <ion-card-title>Actividad</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Ubicación:</strong> {{ actividadProxima.ubicacion }}</p>
+      <p><strong>Fecha:</strong> {{ formatFecha(actividadProxima.fechaISO) }}</p>
+      <p>{{ actividadProxima.descripcion || actividadProxima.mensaje }}</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
