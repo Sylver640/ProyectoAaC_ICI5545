@@ -28,8 +28,8 @@
             <!-- Card con la actividad -->
             <ion-card class="activity-card">
               <ion-card-header>
-                <ion-card-title>
-                  Actividad
+                <ion-card-title *ngIf="actividad">
+                  {{actividad.titulo}}
                 </ion-card-title>
               </ion-card-header>
               <ion-card-content *ngIf="actividad">

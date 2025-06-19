@@ -51,8 +51,6 @@ export class CalendarioPage {
 
 
   actividad: any = null;
-
-
   actividades: any[] = [];
   actividadesDelDia: any[] = [];
   actividadActual: number = 0;
@@ -86,32 +84,31 @@ export class CalendarioPage {
   }
 
   formatFecha(fechaISO: string): string {
-    const fecha = new Date(fechaISO);
-    const dia = fecha.getDate();
-    const mes = fecha.toLocaleString('es-ES', { month: 'long' });
-    const año = fecha.getFullYear();
-    return `${dia} ${mes} ${año}`;
+    const [año, mes, dia] = fechaISO.split('-').map(Number);
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                   'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    return `${dia} de ${meses[mes - 1]} de ${año}`;
   }
 
   onDateChange(event: any) {
-    const fechaISO = event.detail.value?.split('T')[0]; // extraer solo la parte YYYY-MM-DD
+    const fechaISO: string = event.detail.value?.split('T')[0]; // YYYY-MM-DD limpio
+  
     this.fechaSeleccionada = fechaISO;
-
-    // Filtrar actividades de ese día
+  
+    // Comparación simple sin convertir a Date
     this.actividadesDelDia = this.actividades.filter(
       act => act.fechaISO === fechaISO
     );
-
-    console.log('Actividades del día:', this.actividadesDelDia);
-
+  
     if (this.actividadesDelDia.length > 0) {
       this.actividadActual = 0;
       this.actividad = this.actividadesDelDia[0];
     } else {
       this.actividad = null;
     }
-
+  
     console.log('Fecha seleccionada:', this.fechaSeleccionada);
+    console.log('Actividades del día:', this.actividadesDelDia);
   }
 
   prevActividad() {

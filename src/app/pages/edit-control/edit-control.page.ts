@@ -30,9 +30,9 @@ export class EditControlPage implements OnInit {
     return utcDay !== 0 && utcDay !== 6;
   };
 
-
   form = {
     fecha: '',
+    titulo: '',
     ubicacion: '',
     mensaje: '',
     recordatorio: false,
@@ -52,7 +52,7 @@ export class EditControlPage implements OnInit {
   }
 
   async guardar() {
-    const { fecha, ubicacion, mensaje } = this.form;
+    const { fecha, ubicacion } = this.form;
   
     if (!fecha || !ubicacion) {
       this.errorFormulario = 'Debe seleccionar una fecha y una ubicación como mínimo.';
@@ -64,27 +64,30 @@ export class EditControlPage implements OnInit {
       return;
     }
   
+    // Asegura que la fecha esté en formato YYYY-MM-DD sin hora
+    let fechaLimpia = this.form.fecha;
+    if (fechaLimpia.includes('T')) {
+      fechaLimpia = fechaLimpia.split('T')[0];
+    }
+  
     const nuevaActividad = {
       id: Date.now(),
-      fecha: this.form.fecha,
+      titulo: this.form.titulo,
+      fecha: fechaLimpia,
       ubicacion: this.form.ubicacion,
       mensaje: this.form.mensaje,
       recordatorio: this.form.recordatorio,
       diasAntes: this.form.diasAntes,
-      fechaISO: this.form.fecha,
+      fechaISO: fechaLimpia,
     };
   
     let actividades = JSON.parse(localStorage.getItem('actividades') || '[]');
     actividades.push(nuevaActividad);
     localStorage.setItem('actividades', JSON.stringify(actividades));
-
-    // Avisar al calendario que se actualice
+  
     this.CalendarioServiceService.emitirActualizacion();
   
     await this.mensajeGuardado();
-  
-  
-    // Navegar de vuelta al calendario
     this.router.navigateByUrl('/tab/calendario', { replaceUrl: true });
   }
 

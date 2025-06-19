@@ -32,8 +32,9 @@
 
   <h2 class="proximaActividad">Próxima actividad</h2>
   <ion-card *ngIf="actividadProxima" class="activity-card">
+    
     <ion-card-header>
-      <ion-card-title>Actividad</ion-card-title>
+      <ion-card-title>{{actividadProxima.titulo}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p><strong>Ubicación:</strong> {{ actividadProxima.ubicacion }}</p>

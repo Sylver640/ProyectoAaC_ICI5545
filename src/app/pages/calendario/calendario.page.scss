@@ -2,7 +2,7 @@
   ion-datetime {
     max-height: 90vh;
     overflow-y: auto;
-    --background: #fff1f2;
+    --background: #ffe5ec ;
     --background-rgb: 255, 241, 242;
 
     border-radius: 16px;
@@ -24,7 +24,6 @@
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  
     width: 100%;
     max-width: 500px;
     box-sizing: border-box;
@@ -118,9 +117,9 @@
 
   .add-button {
     display: block;
-    margin: 20px auto;
-    width: 48px;
-    height: 48px;
+    margin: auto;
+    width: 75px;
+    height: 75px;
     cursor: pointer;
     z-index: 3;
   }

@@ -8,6 +8,12 @@
   <ion-card>
     <ion-card-content>
 
+      <!-- Titulo -->
+      <ion-item>
+        <ion-label position="floating">Titulo</ion-label>
+        <ion-input [(ngModel)]="form.titulo" type="text"></ion-input>
+      </ion-item>
+
       <!-- Fecha -->
       <ion-item>
         <ion-label position="stacked">Fecha</ion-label>
@@ -53,7 +59,7 @@
               <ion-button expand="block" color="danger" (click)="cancelar()">Cancelar</ion-button>
             </ion-col>
             <ion-col size="6">
-              <ion-button expand="block" color="success" (click)="guardar()">actualizar</ion-button>
+              <ion-button expand="block" color="success" (click)="guardar()">Actualizar</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
