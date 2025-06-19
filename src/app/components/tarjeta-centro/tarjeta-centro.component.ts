@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonCard, IonIcon, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
+import { IonCard } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-tarjeta-centro',
@@ -9,10 +9,7 @@ import { IonCard, IonIcon, IonCardHeader, IonCardSubtitle, IonCardTitle } from '
   styleUrls: ['./tarjeta-centro.component.scss'],
    imports: [
     IonCard,
-    IonCardSubtitle,
-    IonCardTitle,
     CommonModule,
-    IonIcon
   ],
 })
 
@@ -26,6 +23,7 @@ export class TarjetaCentroComponent  implements OnInit {
   private _direccion = '';
   private _horario = '';
   private _telefono = '';
+  telefonosList: string[] = [];
 
   @Input() set titulo(val: string) {
     this._titulo = val || 'Título por defecto';
@@ -48,6 +46,14 @@ export class TarjetaCentroComponent  implements OnInit {
   }
   @Input() set telefono(val: string) {
     this._telefono = val || '';
+    // Procesar el string de teléfono aquí
+    if (this._telefono) {
+      this.telefonosList = this._telefono.split(';');
+      // Opcional: limpiar espacios en blanco alrededor de cada número
+      this.telefonosList = this.telefonosList.map(tel => tel.trim());
+    } else {
+      this.telefonosList = []; // Si el teléfono es nulo o vacío, la lista también lo es
+    }
   }
   get telefono() {
     return this._telefono;

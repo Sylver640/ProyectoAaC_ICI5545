@@ -1,20 +1,35 @@
 <app-panel-superior
-  [titulo] = "consejo.titulo"
-  subtitulo = " "
+  [titulo]="consejo.titulo"
+  subtitulo=" "
 ></app-panel-superior>
 
-
-<ion-content [fullscreen]="true" (click)="closeModal()">
+<ion-content [fullscreen]="true">
   <div>
     <div>
-       <ion-list>
-          <app-tarjeta-consejo *ngFor="let aux of data"
-            [titulo]="aux"
-            [dynamicSize]="false"
-            [color]="consejo.color"
-            (click)="openModal(consejo.titulo, rangoEdad, aux)"
-          ></app-tarjeta-consejo>
+      <ion-list>
+        <app-tarjeta-consejo *ngFor="let aux of data"
+          [titulo]="aux"
+          [dynamicSize]="false"
+          [color]="consejo.color"
+          (click)="prepararYMostrarPopup(consejo.titulo, rangoEdad, aux)"
+        ></app-tarjeta-consejo>
       </ion-list>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarPopupNativo" class="custom-popup-overlay">
+    <div class="custom-popup-content">
+      <div class="custom-popup-header">
+        <h2>{{ popupData.titulo }}</h2>
+        <ion-icon name="close" (click)="cerrarPopupNativo()"></ion-icon>
+      </div>
+      <div class="custom-popup-body">
+        <h3>{{ popupData.subtitulo }}</h3>
+        <p>{{ popupData.contenido }}</p>
+      </div>
+      <div class="custom-popup-footer">
+        <ion-button expand="block" color="primary" (click)="cerrarPopupNativo()">Cerrar</ion-button>
+      </div>
     </div>
   </div>
 </ion-content>

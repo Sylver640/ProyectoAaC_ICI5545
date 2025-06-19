@@ -1,27 +1,27 @@
-<!-- Layout dinámico (más alto y flexible) -->
 <ion-card [color]="color" class="tarjeta-dinamica">
+  <div class="tarjeta-header">
+    <h3 class="centro-titulo-text">{{ titulo }}</h3>
+  </div>
+
   <div class="tarjeta-contenido">
-    <img
-      alt="Silhouette of mountains"
-      [src]="imgUrl"
-      class="tarjeta-img"
-    />
-    <div class="tarjeta-titulo">
-      <div *ngIf="titulo" class="centro-titulo">
-        <h3 class="centro-titulo-text">{{ titulo }}</h3  >
+    <!-- Imagen fija a la izquierda -->
+    <img alt="Imagen centro" [src]="imgUrl" class="tarjeta-img" />
+
+    <!-- Contenido a la derecha -->
+    <div class="tarjeta-informacion">
+      <div *ngIf="direccion">
+        <span class="centro-direccion-text">{{ direccion }}</span>
       </div>
-      <div *ngIf="direccion" class="centro-direccion">
-        <h6 class="centro-direccion-text">{{ direccion }}</h6>
+      <div *ngIf="horario">
+        <span class="centro-horario-text">Horario:</span>
+        <span class="centro-horario-text2">* {{ horario }}</span>
       </div>
-      <div *ngIf="horario" class="centro-horario">
-        <h6 class="centro-horario-text">Horario:</h6>
-        <span class="centro-horario-text2">{{ '* '+horario }}</span>
-      </div>
-      <div *ngIf="telefono" class="centro-telefono">
-        <h6 class="centro-telefono-text">Telefono:</h6>
-        <span class="centro-telefono-text2">{{ '* '+telefono }}</span>
+      <div *ngIf="telefonosList.length > 0">
+        <span class="centro-telefono-text">Teléfono:</span>
+        <div>
+          <span class="centro-telefono-text2" *ngFor="let tel of telefonosList">* {{ tel }}<br></span>
+        </div>
       </div>
     </div>
   </div>
 </ion-card>
-

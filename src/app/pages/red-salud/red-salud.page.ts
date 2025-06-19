@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { PanelSuperiorComponent } from '../../components/panel-superior/panel-superior.component'
 import { TarjetaCentroComponent } from 'src/app/components/tarjeta-centro/tarjeta-centro.component';
 import { IonContent, IonList } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
 import { CentrosService } from 'src/app/services/centros.service';
+import { Centro } from 'src/app/services/centros.service';
 
 @Component({
   selector: 'app-red-salud',
@@ -24,7 +24,7 @@ import { CentrosService } from 'src/app/services/centros.service';
 
 export class RedSaludPage implements OnInit {
 
-  centros: any[] = [];
+  centros: Centro[] = [];
   constructor(private centroService: CentrosService ) { }
 
   ngOnInit() {
