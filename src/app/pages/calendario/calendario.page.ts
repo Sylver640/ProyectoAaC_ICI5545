@@ -57,7 +57,7 @@ export class CalendarioPage {
 
   ngOnInit() {
     this.cargarActividades();
-  
+
     this.CalendarioServiceService.actualizarCalendario$.subscribe(() => {
       this.actualizarCalendario();
     });
@@ -66,7 +66,7 @@ export class CalendarioPage {
   ionViewWillEnter() {
     const datos = localStorage.getItem('actividades');
     this.actividades = datos ? JSON.parse(datos) : [];
-  
+
     const fechaGuardada = localStorage.getItem('fechaSeleccionada');
     if (fechaGuardada) {
       this.fechaSeleccionada = fechaGuardada;
@@ -89,13 +89,13 @@ export class CalendarioPage {
 
   onDateChange(event: any) {
     const fechaISO: string = event.detail.value?.split('T')[0];
-  
+
     this.fechaSeleccionada = fechaISO;
-  
+
     this.actividadesDelDia = this.actividades.filter(
       act => act.fechaISO === this.fechaSeleccionada
     );
-  
+
     if (this.actividadesDelDia.length > 0) {
       this.actividadActual = 0;
       this.actividad = { ...this.actividadesDelDia[0] };
@@ -103,27 +103,27 @@ export class CalendarioPage {
       this.actividadActual = -1;
       this.actividad = null;
     }
-  
+
     console.log('Fecha seleccionada:', this.fechaSeleccionada);
     console.log('Actividades del día:', this.actividadesDelDia);
   }
 
   prevActividad() {
     if (this.actividades.length === 0) return;
-  
+
     this.actividadActual =
       (this.actividadActual - 1 + this.actividades.length) % this.actividades.length;
-  
+
     this.actividad = this.actividades[this.actividadActual];
   }
-  
+
 
   nextActividad() {
     if (this.actividades.length === 0) return;
-  
+
     this.actividadActual =
       (this.actividadActual + 1) % this.actividades.length;
-  
+
     this.actividad = this.actividades[this.actividadActual];
   }
 
