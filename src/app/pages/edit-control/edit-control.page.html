@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Próxima actividad</ion-title>
-  </ion-toolbar>
+  <div class="custom-header">
+    <div class="custom-container"></div>
+    <h1>Próxima actividad</h1>
+  </div>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-card>
     <ion-card-content>
-
       <!-- Fecha -->
       <ion-item>
-        <ion-label position="stacked">Fecha</ion-label>
+        <ion-label class="fecha-label" position="stacked">Fecha de la actividad</ion-label>
         <ion-datetime
           presentation="date"
           locale="es-ES"
@@ -21,32 +21,56 @@
           placeholder="Seleccione una fecha">
         </ion-datetime>
       </ion-item>
-      
-      <!-- Ubicación -->
-      <ion-item>
-        <ion-label position="stacked">Ubicación</ion-label>
-        <ion-select [(ngModel)]="form.ubicacion" placeholder="Seleccione">
-          <ion-select-option *ngFor="let lugar of ubicaciones" [value]="lugar">{{ lugar }}</ion-select-option>
-        </ion-select>
-      </ion-item>
+      <div class="custom-container"></div>
+      <!-- Titulo -->
+      <div class="form-item">
+        <label for="titulo" class="stacked-label">Título</label>
+        <input 
+          id="titulo" 
+          [(ngModel)]="form.titulo" 
+          type="text" 
+          class="custom-input-stacked"
+        >
+      </div>
+       <!-- Ubicación -->
+      <div class="form-item">
+        <label for="ubicacion" class="stacked-label">Ubicación</label>
+        <select id="ubicacion" [(ngModel)]="form.ubicacion" class="custom-select">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let lugar of ubicaciones" [value]="lugar">{{ lugar }}</option>
+        </select>
+      </div>
 
       <!-- Mensaje -->
-      <ion-item>
-        <ion-label position="floating">Mensaje</ion-label>
-        <ion-input [(ngModel)]="form.mensaje" type="text"></ion-input>
-      </ion-item>
+      <div class="form-item">
+        <label for="mensaje" class="stacked-label">Mensaje</label>
+        <input 
+          id="mensaje" 
+          [(ngModel)]="form.mensaje" 
+          type="text" 
+          class="custom-input-stacked"
+        >
+      </div>
 
       <!-- Habilitar recordatorio -->
-      <ion-item lines="none">
-        <ion-checkbox slot="start" [(ngModel)]="form.recordatorio"></ion-checkbox>
-        <ion-label>Habilitar recordatorio</ion-label>
-      </ion-item>
+      <div class="form-item checkbox-item">
+        <label class="checkbox-container">
+          <input type="checkbox" [(ngModel)]="form.recordatorio" class="custom-checkbox">
+          <span class="checkmark"></span>
+          <span class="checkbox-label">Habilitar recordatorio</span>
+        </label>
+      </div>
 
       <!-- Días antes de la notificación -->
-      <ion-item *ngIf="form.recordatorio">
-        <ion-label position="stacked">¿Cuántos días antes desea recibir las notificaciones?</ion-label>
-        <ion-input type="number" [(ngModel)]="form.diasAntes"></ion-input>
-      </ion-item>
+      <div class="form-item" *ngIf="form.recordatorio">
+        <label for="diasAntes" class="stacked-label">¿Cuántos días antes desea recibir las notificaciones?</label>
+        <input 
+          id="diasAntes" 
+          type="number" 
+          [(ngModel)]="form.diasAntes" 
+          class="custom-input-stacked"
+        >
+      </div>
 
       <!-- Botones Guardar y Cancelar -->
       <div class="ion-padding-top ion-text-center">
@@ -64,7 +88,7 @@
 
       <div class="perfil-container" (click)="mensajeGuardado()"></div>
 
-      <ion-text color="danger" *ngIf="errorFormulario">
+      <ion-text color="danger-text" *ngIf="errorFormulario">
         <p>{{ errorFormulario }}</p>
       </ion-text>
 

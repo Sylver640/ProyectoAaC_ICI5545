@@ -4,6 +4,15 @@
     font-family: 'Poppins', sans-serif;
   }
 :root {
+  //COLOR DE TEXTO DE LA APP
+  --ion-background-color: #ffffff;
+  --ion-text-color: #008b8b ;
+  //--ion-text-color-rgb: 136, 19, 55;
+  --ion-safe-area-top: 2vh;
+
+  --ion-background-color-step-650: #f00648;
+
+  --ion-text-color-step-650: #ffffff91;
   /* Colores personalizados */
   --ion-color-alimentos: #79B22D;
   --ion-color-alimentos-rgb: 121,178,45;
@@ -53,9 +62,17 @@
   --ion-color-rose-contrast-rgb: 255, 255, 255;
   --ion-color-rose-shade: #73153b;
   --ion-color-rose-tint: #8f2f56;
+
+  --ion-color-aqua: #69d2d2;
+  --ion-color-aqua-rgb: 105, 210, 210;
+  --ion-color-aqua-contrast: #ffffff;
+  --ion-color-aqua-contrast-rgb: 255, 255, 255;
+  --ion-color-aqua-shade: #5bc0c0;
+  --ion-color-aqua-tint: #78d7d7;
 }
 
 /* This overrides the global CSS variables for both modes */
+
 :root.ios,
 :root.md {
   --ion-background-color: #ffffff;
@@ -104,6 +121,8 @@
   --ion-background-color-step-900: #94294a;
   --ion-background-color-step-950: #8e1e40;
 }
+  
+
 
 .ion-color-alimentos {
   --ion-color-base: var(--ion-color-alimentos);
@@ -163,3 +182,11 @@
   --ion-color-tint: var(--ion-color-rose-tint);
 }
 
+.ion-color-aqua {
+  --ion-color-base: var(--ion-color-aqua);
+  --ion-color-base-rgb: var(--ion-color-aqua-rgb);
+  --ion-color-contrast: var(--ion-color-aqua-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-aqua-contrast-rgb);
+  --ion-color-shade: var(--ion-color-aqua-shade);
+  --ion-color-tint: var(--ion-color-aqua-tint);
+}

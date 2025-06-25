@@ -1,18 +1,18 @@
-<ion-tabs (ionTabsDidChange)="onTabChange($event)">
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="inicio">
+<ion-tabs (ionTabsDidChange)="onTabChange($event)" class="panel-inferior">
+  <ion-tab-bar slot="bottom" class="panel-inferior-tab-bar">
+    <ion-tab-button tab="inicio" class="panel-inferior-inicio">
       <ion-icon name="home-outline"></ion-icon>
       Inicio
     </ion-tab-button>
-    <ion-tab-button tab="consejos">
+    <ion-tab-button tab="consejos" class="panel-inferior-consejos">
       <ion-icon name="list-outline"></ion-icon>
       Consejos
     </ion-tab-button>
-    <ion-tab-button tab="calendario">
+    <ion-tab-button tab="calendario" class="panel-inferior-calendario">
       <ion-icon name="calendar-outline"></ion-icon>
       Calendario
     </ion-tab-button>
-    <ion-tab-button tab="red-salud">
+    <ion-tab-button tab="red-salud" class="panel-inferior-red-salud">
       <ion-icon name="search"></ion-icon>
       Red de salud
     </ion-tab-button>

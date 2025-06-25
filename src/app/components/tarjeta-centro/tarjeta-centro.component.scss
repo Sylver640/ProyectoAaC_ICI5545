@@ -1,18 +1,5 @@
-
-
-.tarjeta-contenido {
-  margin: 16px;
-  display: flex;
-  align-items: center;
-  justify-content:flex-start;
-  flex-direction: row;
-}
-
-.tarjeta-img {
-  margin: 16px;
-  width: 96px;
-  height: 96px;
-
+.tarjeta-dinamica{
+  background-color: #b86c82;
 }
 
 .tarjeta-titulo {
@@ -30,29 +17,42 @@
   margin-bottom: 0px;
 }
 
-.centro-direccion-text {
-  font-size: 1rem;
-  text-align: end;
-  margin-bottom: 0px;
+.tarjeta-contenido {
+  margin: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.centro-horario-text {
-  font-size: 1rem;
-  margin-bottom: 0px;
+.tarjeta-img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.centro-horario-text2 {
-  font-size: 0.8rem;
-  margin-bottom: 0px;
+.tarjeta-informacion {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  color: white;
 }
 
-.centro-telefono-text {
-  font-size: 1rem;
-  margin-bottom: 0px;
-}
-
+.centro-direccion-text,
+.centro-horario-text,
+.centro-horario-text2,
+.centro-telefono-text,
 .centro-telefono-text2 {
-  font-size: 0.8rem;
-  margin-bottom: 0px;
+  margin: 0;
 }
 
+.tarjeta-header {
+  padding: 8px 12px;
+}
+
+.centro-titulo-text {
+  margin: 0;
+  padding: 0 4px;
+}

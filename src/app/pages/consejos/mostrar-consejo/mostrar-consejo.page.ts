@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { SugerenciasService } from 'src/app/services/sugerencias.service';
 import { ActivatedRoute } from '@angular/router';
-import { TestModalComponent } from 'src/app/components/test-modal/test-modal.component';
 import { TarjetaConsejoComponent } from 'src/app/components/tarjeta-consejo/tarjeta-consejo.component';
 import { PanelSuperiorComponent } from 'src/app/components/panel-superior/panel-superior.component';
-import { IonContent, IonList } from '@ionic/angular/standalone';
+import { IonContent, IonList, IonButton, IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-mostrar-consejo',
   templateUrl: './mostrar-consejo.page.html',
   styleUrls: ['./mostrar-consejo.page.scss'],
   standalone: true,
-  imports: [ TarjetaConsejoComponent, IonContent, CommonModule, FormsModule, PanelSuperiorComponent, IonList],
-  providers: [ModalController],
+ imports: [ TarjetaConsejoComponent, IonContent, CommonModule, FormsModule, PanelSuperiorComponent, IonList, IonButton, IonIcon],
 })
 export class MostrarConsejoPage implements OnInit {
 
@@ -23,42 +20,10 @@ export class MostrarConsejoPage implements OnInit {
   data: string[] = [];
   perfil: any = [];
   rangoEdad: string = '0-6 meses';
-  private currentModal: HTMLIonModalElement | null = null;
+  mostrarPopupNativo: boolean = false;
+  popupData: { titulo: string, subtitulo: string, contenido: string } = { titulo: '', subtitulo: '', contenido: '' };
 
-  constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService, private modalCtrl: ModalController) { }
-
-  async openModal(titulo: string, rango: string, contenido: string) {
-    if (this.currentModal) {
-      await this.currentModal.dismiss();
-      this.currentModal = null;
-      return this.currentModal;
-    }
-    this.currentModal = await this.modalCtrl.create({
-      component: TestModalComponent,
-      componentProps: {
-        titulo: titulo,
-        subtitulo: rango,
-        contenido: contenido,
-      },
-      breakpoints: [0, 0.5, 1],
-      initialBreakpoint: 0.5,
-    });
-
-    this.currentModal.onDidDismiss().then(() => {
-      this.currentModal = null;
-    });
-
-    await this.currentModal.present();
-    return this.currentModal;
-  }
-
-  async closeModal() {
-    if (this.currentModal) {
-      await this.currentModal.dismiss();
-      this.currentModal = null;
-      return;
-    }
-  }
+  constructor(private route: ActivatedRoute, private sugerenciaservice: SugerenciasService) { }
 
   obtenerRangoEdad(fechaNacimiento: string): string {
     if (!fechaNacimiento) return '';
@@ -169,6 +134,14 @@ export class MostrarConsejoPage implements OnInit {
         console.error('Error:', err);
       }
     });
+  }
 
+  prepararYMostrarPopup(titulo: string, rango: string, contenido: string) {
+    this.popupData = { titulo, subtitulo: rango, contenido };
+    this.mostrarPopupNativo = true;
+  }
+
+  cerrarPopupNativo() {
+    this.mostrarPopupNativo = false;
   }
 }

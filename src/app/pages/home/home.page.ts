@@ -24,40 +24,52 @@ export class HomePage implements OnInit {
   constructor(private router: Router,private hitoService: HitoService) {}
 
   ngOnInit() {
-
-    this.cargarPerfil();
-    if (this.perfil.fechaNacimiento) {
-      this.edadTexto = this.calcularEdad(this.perfil.fechaNacimiento);
-    } else {
-      this.edadTexto = 'Fecha de nacimiento no disponible';
-    }
     const data = localStorage.getItem('perfilSeleccionado');
     this.perfil = data ? JSON.parse(data) : {};
-    this.rangoEdad = this.obtenerRangoEdad(this.perfil.fechaNacimiento);
+  
+    if (this.perfil.fechaNacimiento) {
+      this.edadTexto = this.calcularEdad(this.perfil.fechaNacimiento);
+      this.rangoEdad = this.obtenerRangoEdad(this.perfil.fechaNacimiento);
+    } else {
+      this.edadTexto = 'Fecha de nacimiento no disponible';
+      this.rangoEdad = '';
+    }
+  
     this.cargarHitos();
     this.buscarActividadProxima();
   }
 
   formatFecha(fechaISO: string): string {
-    const fecha = new Date(fechaISO);
-    const dia = fecha.getDate();
-    const mes = fecha.toLocaleString('es-ES', { month: 'long' });
-    const año = fecha.getFullYear();
-    return `${dia} ${mes} ${año}`;
+    const [año, mes, dia] = fechaISO.split('-').map(Number);
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                   'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    return `${dia} de ${meses[mes - 1]} de ${año}`;
   }
 
   buscarActividadProxima() {
     const datos = localStorage.getItem('actividades');
-    if (!datos) return;
+    console.log('Datos raw:', datos);
+    
+    if (!datos) {
+      console.log('No hay datos en localStorage');
+      this.actividadProxima = null;
+      return;
+    }
   
     const actividades = JSON.parse(datos);
   
-    const hoy = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    const hoy = new Date();
+    const hoyISO = hoy.getFullYear() + '-' +
+                   String(hoy.getMonth() + 1).padStart(2, '0') + '-' +
+                   String(hoy.getDate()).padStart(2, '0');
+    console.log('Hoy ISO:', hoyISO);
   
-    // Ordenar por fecha futura más cercana
     const proximas = actividades
-      .filter((a: any) => a.fechaISO >= hoy)
-      .sort((a: any, b: any) => a.fechaISO.localeCompare(b.fechaISO));
+      .filter((a: any) => !!a.fechaISO)
+      .sort((a: any, b: any) => a.fechaISO.localeCompare(b.fechaISO))
+      .filter((a: any) => true);  // Sin filtrar por fecha (te quedas con la más cercana en el sort)
+  
+    console.log('Próximas actividades encontradas:', proximas);
   
     this.actividadProxima = proximas.length > 0 ? proximas[0] : null;
   }

@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { CalendarioServiceService } from 'src/app/services/calendario-service.service';
 
 // Definir una interfaz para las actividades
 interface Actividad {
   id: number;
+  titulo: string;
   fecha: string;
   fechaISO?: string;
   ubicacion: string;
@@ -32,10 +32,12 @@ export class EditActividadPage implements OnInit {
 
   // Inicializamos actividadId como null o 0, ya que será asignado más tarde
   actividadId: number | null = null;
+  mostrarPopupExito: boolean = false;
 
   // Formulario de la actividad a editar
   form: Actividad = {
     id: 0, // Temporalmente asignado como 0
+    titulo: '',
     fecha: '',
     ubicacion: '',
     mensaje: '',
@@ -52,7 +54,6 @@ export class EditActividadPage implements OnInit {
 
   constructor(
     private router: Router,
-    private alertCtrl: AlertController,
     private activatedRoute: ActivatedRoute, // Para obtener el parámetro de la ruta
     private CalendarioServiceService: CalendarioServiceService
   ) {}
@@ -111,6 +112,7 @@ export class EditActividadPage implements OnInit {
       // Actualizar la actividad con los nuevos datos
       actividades[index] = {
         id: this.actividadId!,
+        titulo:  this.form.titulo,
         fecha: this.form.fecha,
         fechaISO: this.form.fecha.split('T')[0], // <- aquí extraemos YYYY-MM-DD
         ubicacion: this.form.ubicacion,
@@ -125,10 +127,7 @@ export class EditActividadPage implements OnInit {
       this.CalendarioServiceService.emitirActualizacion();
 
       // Mostrar mensaje de éxito
-      await this.mensajeGuardado();
-
-      // Redirigir al calendario
-      this.router.navigate(['/tab/calendario']);
+      this.mensajeGuardado();
     } else {
       this.errorFormulario = 'Actividad no encontrada.';
     }
@@ -139,19 +138,12 @@ export class EditActividadPage implements OnInit {
     this.router.navigate(['/tab/calendario']);
   }
 
-  async mensajeGuardado() {
-    // Crear y mostrar el mensaje de actividad guardada
-    const alert = await this.alertCtrl.create({
-      header: 'Actividad actualizada',
-      message: `Tu actividad ha sido actualizada con éxito!`,
-      buttons: [
-        {
-          text: 'Ok',
-        }
-      ]
-    });
-
-    await alert.present();
+  cerrarPopup() {
+    this.mostrarPopupExito = false;
+    this.router.navigate(['/tab/calendario']);
   }
 
+  mensajeGuardado() {
+    this.mostrarPopupExito = true;
+  }
 }

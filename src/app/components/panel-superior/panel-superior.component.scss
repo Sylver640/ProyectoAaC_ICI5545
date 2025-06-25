@@ -1,13 +1,20 @@
 .panel-superior {
   ion-header,
   ion-toolbar {
-    min-height: 110px;
-    max-height: none;
+    //min-height: 110px;
+    //max-height: none;
     transition: max-height 0.2s;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-top: var(--ion-safe-area-top, 0);
+    background-color: white;
+  }
+
+  app-info-seccion {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   ion-toolbar.titulo-largo {
@@ -18,6 +25,6 @@
   ion-buttons[slot="end"] {
     display: flex;
     align-items: center;
-    padding-right: 16px; // <-- Agrega espacio a la derecha
+    padding-right: 16px;
   }
 }

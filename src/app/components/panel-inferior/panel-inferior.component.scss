@@ -1,0 +1,31 @@
+.panel-inferior {
+
+}
+
+.panel-inferior-tab-bar {
+  --background: var(--ion-text-color);
+  padding: 0.2rem;
+}
+
+.panel-inferior-inicio {
+  --color: var(--ion-text-color-step-650);
+  --color-selected: white;
+  text-spacing-trim: 0px;
+}
+
+.panel-inferior-consejos {
+  --color: var(--ion-text-color-step-650);
+  --color-selected: white;
+}
+
+.panel-inferior-calendario {
+  --color: var(--ion-text-color-step-650);
+  --color-selected: white;
+}
+
+.panel-inferior-red-salud {
+  --color: var(--ion-text-color-step-650);
+  --color-selected: white;
+  line-height: 1.1;
+
+}

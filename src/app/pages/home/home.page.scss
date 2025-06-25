@@ -49,10 +49,11 @@
   scroll-snap-align: start;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: var(--ion-color-light);
+  background-color: #cf98a7  ;
 }
 
 .hito-card ion-card-content {
+  color: white;
   white-space: normal;
   word-wrap: break-word;
   font-size: 22px;     
@@ -88,5 +89,16 @@
 
 .proximaActividad{
   text-align: center;
-  transform: translateX(-80px);
+  font-weight: bold;
+  font-size: 30px;
+  //transform: translateX(-80px);
 }
+
+.activity-card{
+  text-align: center;
+}
+
+ion-card-title{
+  font-size: 20px;
+}
+
