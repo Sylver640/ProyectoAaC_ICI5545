@@ -52,6 +52,7 @@ export class CalendarioPage {
   actividadActual: number = 0;
   fechaSeleccionada: string = ''; // formato ISO
   mostrarConfirmacion: boolean = false;
+  mostrarEleminacion: boolean = false;
 
   constructor (private router: Router,private cdr: ChangeDetectorRef, private CalendarioServiceService: CalendarioServiceService){}
 
@@ -128,7 +129,8 @@ export class CalendarioPage {
   }
 
   confirmarActividad() {
-    console.log('Confirmada');
+    console.log(this.actividad);
+    this.mostrarConfirmacion = true;
   }
 
   editarActividad(id: number) {
@@ -157,12 +159,13 @@ export class CalendarioPage {
       this.actividad = null;
     }
 
-    this.mostrarConfirmacion = false; // Ocultar confirmación
+    this.mostrarEleminacion = false; // Ocultar confirmación
+    this.mostrarConfirmacion = false; // Ocultar confirmación de actividad
     console.log('Actividad eliminada');
   }
 
   async confirmarEliminacionActividad() {
-    this.mostrarConfirmacion = true;
+    this.mostrarEleminacion = true;
   }
 
   agregarActividad() {
@@ -177,6 +180,6 @@ export class CalendarioPage {
   }
 
   cancelarEliminacion() {
-    this.mostrarConfirmacion = false;
+    this.mostrarEleminacion = false;
   }
 }

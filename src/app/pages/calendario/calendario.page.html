@@ -60,7 +60,7 @@
     <!-- Botón agregar, solo si hay actividad -->
     <img *ngIf="fechaSeleccionada" src="assets/icon/add_circle.png" class="add-button" (click)="agregarActividad()" />
 
-    <div *ngIf="mostrarConfirmacion" class="popup-overlay">
+    <div *ngIf="mostrarEleminacion" class="popup-overlay">
       <div class="popup-content">
         <h3>Eliminar actividad</h3>
         <p>¿Deseas eliminar la actividad?</p>
@@ -69,6 +69,17 @@
           <button (click)="eliminarActividad()">Sí, eliminar</button>
         </div>
       </div>
-  </div>
+    </div>
+
+    <div *ngIf="mostrarConfirmacion" class="popup-overlay">
+      <div class="popup-content">
+        <h3>Confirmar actividad</h3>
+        <p>¿Deseas Confirmar que la actividad ya fue terminada?</p>
+        <div class="popup-buttons">
+          <button (click)="cancelarEliminacion()">Cancelar</button>
+          <button (click)="eliminarActividad()">Sí, Confirma</button>
+        </div>
+      </div>
+    </div>
 
 </ion-content>
