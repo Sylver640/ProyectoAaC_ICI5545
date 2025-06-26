@@ -127,7 +127,6 @@ export class HomePage implements OnInit {
     let años = hoy.getFullYear() - fechaNac.getFullYear();
     let meses = hoy.getMonth() - fechaNac.getMonth();
 
-
     if (meses < 0) {
       años--;
       meses += 12;

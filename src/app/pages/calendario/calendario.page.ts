@@ -75,7 +75,12 @@ export class CalendarioPage {
       this.onDateChange({ detail: { value: fechaGuardada } });
     }
 
-    const fechaNacimientoGuardada = localStorage.getItem('fechaNacimiento');
+    const perfilGuardado = localStorage.getItem('perfilSeleccionado');
+    console.log('Perfil guardado:', perfilGuardado);
+    const perfil = JSON.parse(perfilGuardado || '{}');
+    const fechaCompleta = perfil.fechaNacimiento;
+    const fechaNacimientoGuardada = fechaCompleta.split('T')[0];
+    console.log('Fecha de nacimiento guardada:', fechaNacimientoGuardada);
     if (fechaNacimientoGuardada) {
       this.fechaNacimiento = fechaNacimientoGuardada;
 

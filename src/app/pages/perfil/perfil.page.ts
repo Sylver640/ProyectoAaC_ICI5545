@@ -5,8 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
