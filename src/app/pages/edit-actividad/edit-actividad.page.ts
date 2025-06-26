@@ -8,6 +8,7 @@ import { CalendarioServiceService } from 'src/app/services/calendario-service.se
 // Definir una interfaz para las actividades
 interface Actividad {
   id: number;
+  tipo: string;
   titulo: string;
   fecha: string;
   fechaISO?: string;
@@ -37,6 +38,7 @@ export class EditActividadPage implements OnInit {
   // Formulario de la actividad a editar
   form: Actividad = {
     id: 0, // Temporalmente asignado como 0
+    tipo: '',
     titulo: '',
     fecha: '',
     ubicacion: '',
@@ -112,6 +114,7 @@ export class EditActividadPage implements OnInit {
       // Actualizar la actividad con los nuevos datos
       actividades[index] = {
         id: this.actividadId!,
+        tipo: "usuario",
         titulo:  this.form.titulo,
         fecha: this.form.fecha,
         fechaISO: this.form.fecha.split('T')[0], // <- aquí extraemos YYYY-MM-DD

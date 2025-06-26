@@ -53,6 +53,7 @@ export class CalendarioPage {
   fechaSeleccionada: string = ''; // formato ISO
   mostrarConfirmacion: boolean = false;
   mostrarEleminacion: boolean = false;
+  fechaNacimiento: string = '';
 
   constructor (private router: Router,private cdr: ChangeDetectorRef, private CalendarioServiceService: CalendarioServiceService){}
 
@@ -65,16 +66,50 @@ export class CalendarioPage {
   }
 
   ionViewWillEnter() {
-    const datos = localStorage.getItem('actividades');
-    this.actividades = datos ? JSON.parse(datos) : [];
+    const datosLocales = localStorage.getItem('actividades');
+    const actividadesLocales = datosLocales ? JSON.parse(datosLocales) : [];
 
     const fechaGuardada = localStorage.getItem('fechaSeleccionada');
     if (fechaGuardada) {
       this.fechaSeleccionada = fechaGuardada;
       this.onDateChange({ detail: { value: fechaGuardada } });
     }
-  }
 
+    const fechaNacimientoGuardada = localStorage.getItem('fechaNacimiento');
+    if (fechaNacimientoGuardada) {
+      this.fechaNacimiento = fechaNacimientoGuardada;
+
+      const nacimiento = new Date(this.fechaNacimiento);
+      const hoy = new Date();
+      const edadMeses = (hoy.getFullYear() - nacimiento.getFullYear()) * 12 + (hoy.getMonth() - nacimiento.getMonth());
+
+      this.CalendarioServiceService.listarConsejos(this.fechaNacimiento).subscribe(
+        (res) => {
+          const actividadesSeremi = res.filter(act => {
+            if (!act.fechaTentativa) return false;
+
+            const [anioTentativo, mesTentativo] = act.fechaTentativa.split('-').map(Number);
+            const fechaTentativa = new Date(anioTentativo, mesTentativo - 1);
+            const mesesDesdeNacimiento = (fechaTentativa.getFullYear() - nacimiento.getFullYear()) * 12 + (fechaTentativa.getMonth() - nacimiento.getMonth());
+
+            return mesesDesdeNacimiento === edadMeses;
+          });
+
+          // ✅ Combinar actividades locales + seremi
+          this.actividades = [...actividadesLocales, ...actividadesSeremi];
+          console.log('Actividades locales + SEREMI:', this.actividades);
+        },
+        (error) => {
+          console.error('Error al obtener actividades del SEREMI:', error);
+          this.actividades = [...actividadesLocales]; // Fallback solo con locales
+        }
+      );
+    } else {
+      // Si no hay fecha de nacimiento, solo usar locales
+      this.actividades = [...actividadesLocales];
+    }
+  }
+  
   cargarActividades() {
     const datos = localStorage.getItem('actividades');
     this.actividades = datos ? JSON.parse(datos) : [];
@@ -93,9 +128,16 @@ export class CalendarioPage {
 
     this.fechaSeleccionada = fechaISO;
 
-    this.actividadesDelDia = this.actividades.filter(
-      act => act.fechaISO === this.fechaSeleccionada
-    );
+    const [anioSeleccionado, mesSeleccionado] = this.fechaSeleccionada.split('-');
+
+    this.actividadesDelDia = this.actividades.filter(act => {
+      if (act.tipo === 'Vacuna' || act.tipo === 'Control de salud') {
+        const [anioTentativo, mesTentativo] = (act.fechaTentativa || '').split('-');
+        return anioTentativo === anioSeleccionado && mesTentativo === mesSeleccionado;
+      } else {
+        return act.fechaISO === this.fechaSeleccionada;
+      }
+    });
 
     if (this.actividadesDelDia.length > 0) {
       this.actividadActual = 0;

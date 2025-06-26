@@ -5,7 +5,6 @@ import { IonContent,IonCard,IonCardHeader,IonCardTitle,IonCardContent,IonText } 
 import { PanelSuperiorComponent} from 'src/app/components/panel-superior/panel-superior.component';
 import { HitoService } from 'src/app/services/hitos.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
